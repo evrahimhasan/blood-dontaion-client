@@ -9,7 +9,7 @@ const MyRequest = () => {
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        axiosSecure.get(`/my-request?page=${currentPage}&size=${requestPerPage}`)
+        axiosSecure.get(`/my-request?page=${currentPage - 1}&size=${requestPerPage}`)
             .then(res => {
                 setMyRequests(res.data.request);
                 setTotalRequest(res.data.totalRequest)
@@ -25,7 +25,18 @@ const MyRequest = () => {
     // console.log(myRequests);
     // console.log(totalRequest);
     // console.log(numberOfPages);
-    console.log(pages);
+    // console.log(pages);
+
+    const handlePrev = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleNext = () => {
+        if (currentPage < pages.length) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
 
     return (
         <div>
@@ -44,7 +55,7 @@ const MyRequest = () => {
                         {
                             myRequests.map((request, index) => (
                                 <tr>
-                                    <th>{index + 1}</th>
+                                    <th>{(currentPage - 1) * requestPerPage + index + 1}</th>
                                     <td>{request.recipientName}</td>
                                     <td>{request.hospital}</td>
                                     <td>{request.bloodGroup}</td>
@@ -54,7 +65,17 @@ const MyRequest = () => {
                     </tbody>
                 </table>
             </div>
-            prev 1 2 3 4 next
+            <div className='flex justify-center mt-12 gap-4'>
+                <button onClick={handlePrev} className="btn">Prev</button>
+                {
+                    pages.map(page =>
+                        <button
+                            className={`btn ${page === currentPage ? 'bg-[#435585] text-white' : ''}`}
+                            onClick={() => setCurrentPage(page)}>{page}</button>
+                    )
+                }
+                <button onClick={handleNext} className="btn">Next</button>
+            </div>
         </div>
     );
 };
