@@ -5,7 +5,6 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import DashBoardLayout from "../dashboardLayout/DashBoardLayout";
 import MainDashBoard from "../pages/dashboard/MainDashboard/MainDashBoard";
-import ManageProduct from "../pages/dashboard/manageProduct/ManageProduct";
 import AddRequest from "../pages/dashboard/addRequest/AddRequest";
 import AllUsers from "../pages/dashboard/allUsers/AllUsers";
 import PriviteRoute from "./PriviteRoute";
@@ -45,10 +44,6 @@ const router = createBrowserRouter([
                 path: "all-users",
                 Component: AllUsers
             },
-            {
-                path: "manage-product",
-                Component: ManageProduct
-            }
         ]
     }
 ]);
