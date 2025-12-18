@@ -1,19 +1,37 @@
-import { use, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { use, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Link } from "react-router";
 
 const SignUp = () => {
-    const { createUser, setUser, updateUser, googleSignIn } = use(AuthContext)
+    const { createUser, setUser, updateUser } = use(AuthContext)
     const [show, setShow] = useState(false);
-    const navigate = useNavigate()
+    const [upazilas, setUpazilas] = useState([]);
+    const [districts, setDistricts] = useState([]);
+
+
+    useEffect(() => {
+        axios.get('/upazila.json')
+            .then(res => {
+                // console.log(res.data.upazilas);
+                setUpazilas(res.data.upazilas);
+            })
+            .catch(err => console.error(err));
+
+        axios.get('/district.json')
+            .then(res => {
+                // console.log(res.data.districts);
+                setDistricts(res.data.districts);
+            })
+            .catch(err => console.error(err));
+    }, []);
 
     const handleSignup = async (e) => {
         e.preventDefault()
-        console.log(e.target)
+        // console.log(e.target)
         const form = e.target;
 
         const name = form.name.value;
@@ -21,8 +39,11 @@ const SignUp = () => {
         const password = form.password.value;
         const photo = form.photo
         const file = photo.files[0]
+        const blood = form.blood.value;
+        const district = form.district.value;
+        const upazila = form.upazila.value;
 
-        console.log(file);
+        // console.log(blood);
         // console.log({ name, photo, email, password });
 
         const regExp = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
@@ -43,7 +64,12 @@ const SignUp = () => {
             email,
             password,
             mainPhoto,
+            blood,
+            district,
+            upazila
         }
+
+        console.log(formData);
 
         if (res.data.success == true) {
             createUser(email, password)
@@ -78,20 +104,7 @@ const SignUp = () => {
 
     }
 
-    const handleGoogleSignUp = () => {
-        googleSignIn()
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                alert('Google signUp successfully')
-                navigate(`${location.state ? location.state : '/'}`)
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert(errorCode, errorMessage)
-            });
-    }
+
     return (
         <div className='flex justify-center min-h-screen items-center'>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
@@ -108,15 +121,6 @@ const SignUp = () => {
                                 required />
                         </div>
 
-                        {/* Photo URL */}
-                        <div>
-                            <label className="label">Photo URl</label>
-                            <input type="file"
-                                name='photo'
-                                className="input"
-                                placeholder="Photo URl"
-                                required />
-                        </div>
 
                         {/* email */}
                         <div>
@@ -127,6 +131,42 @@ const SignUp = () => {
                                 placeholder="Email"
                                 required />
                         </div>
+
+                        {/* Photo URL */}
+                        <div>
+                            <label className="label">Photo URl</label>
+                            <input type="file"
+                                name='photo'
+                                className="input"
+                                placeholder="Photo URl"
+                                required />
+                        </div>
+
+                        <select name="blood" defaultValue="Chose Blood Group" className="select">
+                            <option disabled={true}>Chose Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+
+                        <select name="district" defaultValue="Chose Your District" className="select">
+                            <option disabled={true}>Chose Your District</option>
+                            {
+                                districts.map(district => <option value={district?.name} key={district.id}>{district?.name}</option>)
+                            }
+                        </select>
+
+                        <select name="upazila" defaultValue="Chose Your Upazila" className="select">
+                            <option disabled={true}>Chose Your Upazila</option>
+                            {
+                                upazilas.map(upazila => <option value={upazila?.name} key={upazila.id}>{upazila?.name}</option>)
+                            }
+                        </select>
 
                         {/* password */}
                         <div className="relative">
@@ -151,21 +191,6 @@ const SignUp = () => {
 
 
 
-                        <div>
-                            <button
-                                type="button"
-                                onClick={handleGoogleSignUp}
-                                className="flex items-center justify-center gap-3 bg-gray-100 text-gray-800 
-                            px-5 py-2 rounded-lg w-full font-semibold hover:bg-gray-300 transition-colors cursor-pointer"
-                            >
-                                <img
-                                    src="https://www.svgrepo.com/show/475656/google-color.svg"
-                                    alt="google"
-                                    className="w-5 h-5"
-                                />
-                                Continue with Google
-                            </button>
-                        </div>
 
 
 
