@@ -60,22 +60,13 @@ const Aside = () => {
                     </NavLink>)
                 }
 
-                <NavLink to='/dashboard/users'
+                <NavLink to='/dashboard/my-request'
                     className={({ isActive }) =>
                         `flex items-center gap-3 p-3 rounded-lg transition ${isActive ? "bg-blue-600 text-white" :
                             "hover:bg-gray-7000"
                         }`}>
                     <FiUsers className='h-5 w-5' />
-                    Users
-                </NavLink>
-
-                <NavLink to='/dashboard/settings'
-                    className={({ isActive }) =>
-                        `flex items-center gap-3 p-3 rounded-lg transition ${isActive ? "bg-blue-600 text-white" :
-                            "hover:bg-gray-7000"
-                        }`}>
-                    <FiSettings className='h-5 w-5' />
-                    Settings
+                    My Request
                 </NavLink>
             </nav>
 
