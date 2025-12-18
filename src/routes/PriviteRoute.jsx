@@ -3,12 +3,12 @@ import { AuthContext } from '../provider/AuthProvider';
 import { Navigate } from 'react-router';
 
 const PriviteRoute = ({ children }) => {
-    const { user, loading, roleLoading } = use(AuthContext)
+    const { user, loading, roleLoading, userStatus } = use(AuthContext)
 
     if (loading || roleLoading) {
         return <p>Loading........</p>
     }
-    if (!user) {
+    if (!user || userStatus !== 'active') {
         return <Navigate to={'/login'}></Navigate>
     }
 

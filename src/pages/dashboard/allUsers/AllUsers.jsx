@@ -5,7 +5,7 @@ const AllUsers = () => {
     const axiosSecure = useAxiosSecure()
     const [users, setUsers] = useState([])
 
-    useEffect(() => {
+    const fetchUser = () => {
         axiosSecure.get('/users')
             .then(res => {
                 setUsers(res.data)
@@ -13,9 +13,22 @@ const AllUsers = () => {
             .catch(error => {
                 console.log(error);
             })
+    }
+
+    useEffect(() => {
+        fetchUser()
     }, [axiosSecure])
 
     console.log(users);
+
+    const handleStatusChange = (email, status) => {
+        axiosSecure.patch(`/update/user/status?email=${email}&status=${status}`)
+            .then(res => {
+                console.log(res.data);
+                fetchUser()
+            })
+
+    }
 
     return (
         <div className="overflow-x-auto">
@@ -54,8 +67,15 @@ const AllUsers = () => {
                                 </td>
                                 <td>{user?.status}</td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">Edit</button>
-                                    <button className="btn btn-ghost btn-xs">Delete</button>
+                                    {
+                                        user?.status == 'active' ? (<button
+                                            onClick={() => handleStatusChange(user?.email, 'blocked')}
+                                            className="btn btn-error btn-xs text-white">Blocked</button>)
+                                            : (<button
+                                                onClick={() => handleStatusChange(user?.email, 'active')}
+                                                className="btn btn-ghost btn-xs">Active</button>)
+                                    }
+
                                 </th>
                             </tr>
                         )
