@@ -60,6 +60,37 @@ const AllRequset = () => {
         }
     };
 
+
+    const handleDelete = (id) => {
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/Delete-request?id=${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your Request has been deleted.",
+                            icon: "success",
+                        });
+                        fetchRequest()
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            }
+        });
+    };
+
+
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -145,11 +176,13 @@ const AllRequset = () => {
                                                 {request.donationStatus === "inprogress" && (
                                                     <>
                                                         <button
+                                                            
                                                             className="btn btn-xs btn-outline"
                                                         >
                                                             Done
                                                         </button>
                                                         <button
+                                                            
                                                             className="btn btn-xs btn-outline btn-error"
                                                         >
                                                             Cancel
@@ -163,10 +196,10 @@ const AllRequset = () => {
 
                                                 {request.donationStatus === "pending" && (
                                                     <button
-                                                        className="btn btn-xs btn-outline"
+                                                        onClick={() => handleDelete(request._id)}
+                                                        className="btn btn-xs btn-outline btn-error"
                                                     >
-                                                        <RiDeleteBin6Line
-                                                         size={15} />
+                                                        Delete
                                                     </button>
                                                 )}
                                             </td>
