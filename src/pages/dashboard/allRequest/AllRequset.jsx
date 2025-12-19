@@ -91,6 +91,20 @@ const AllRequset = () => {
 
    
 
+    const hendleDone = (id, status) => {
+        axiosSecure
+            .patch(`/done-request?id=${id}&status=${status}`)
+            .then((res) => {
+                fetchRequest();
+                toast.success("Your request done");
+                console.log(res.data);
+            })
+            .catch((error) => {
+                toast.error("your request not done");
+                console.log(error);
+            });
+    };
+
 
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
@@ -177,13 +191,13 @@ const AllRequset = () => {
                                                 {request.donationStatus === "inprogress" && (
                                                     <>
                                                         <button
-                                                            
+                                                            onClick={() => hendleDone(request._id, "done")}
                                                             className="btn btn-xs btn-outline"
                                                         >
                                                             Done
                                                         </button>
                                                         <button
-                                                           
+                                                            
                                                             className="btn btn-xs btn-outline btn-error"
                                                         >
                                                             Cancel
