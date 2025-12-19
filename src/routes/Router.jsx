@@ -10,6 +10,8 @@ import AllUsers from "../pages/dashboard/allUsers/AllUsers";
 import PriviteRoute from "./PriviteRoute";
 import MyRequest from "../pages/dashboard/myRequest/MyRequest";
 import Donation from "../pages/donation/Donation";
+import PaymentSucces from "../pages/paymentSucces/PaymentSucces";
+import AllRequset from "../pages/dashboard/allRequest/AllRequset";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: '/donation',
                 Component: Donation
+            },
+            {
+                path: '/payment-success',
+                Component: PaymentSucces
             }
         ]
     },
@@ -53,6 +59,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/my-donation-requests",
                 Component: MyRequest
+            },
+            {
+                path: "/dashboard/all-requests",
+                Component: AllRequset
             }
         ]
     }
