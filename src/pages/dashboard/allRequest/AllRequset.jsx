@@ -89,8 +89,21 @@ const AllRequset = () => {
         });
     };
 
-   
+    // cenceled
+    const hendleCencel = (id, status) => {
+        axiosSecure
+            .patch(`/cancel-request?id=${id}&status=${status}`)
+            .then((res) => {
+                console.log(res.data);
+                fetchRequest();
+                toast.success("your request cencel successfull");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
+    // Done
     const hendleDone = (id, status) => {
         axiosSecure
             .patch(`/done-request?id=${id}&status=${status}`)
@@ -197,7 +210,7 @@ const AllRequset = () => {
                                                             Done
                                                         </button>
                                                         <button
-                                                            
+                                                            onClick={() => hendleCencel(request._id, "canceled")}
                                                             className="btn btn-xs btn-outline btn-error"
                                                         >
                                                             Cancel
