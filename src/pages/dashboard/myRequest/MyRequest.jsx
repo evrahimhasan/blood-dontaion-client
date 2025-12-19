@@ -46,7 +46,7 @@ const MyRequest = () => {
 
                 {/* filter */}
 
-                {/* <select
+                <select
                     className="select select-bordered"
                     value={status}
                     onChange={e => {
@@ -58,7 +58,7 @@ const MyRequest = () => {
                     <option value="inprogress">In Progress</option>
                     <option value="done">Done</option>
                     <option value="canceled">Canceled</option>
-                </select> */}
+                </select>
             </div>
 
 
