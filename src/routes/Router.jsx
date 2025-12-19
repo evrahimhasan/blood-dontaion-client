@@ -12,6 +12,7 @@ import MyRequest from "../pages/dashboard/myRequest/MyRequest";
 import Donation from "../pages/donation/Donation";
 import PaymentSucces from "../pages/paymentSucces/PaymentSucces";
 import AllRequset from "../pages/dashboard/allRequest/AllRequset";
+import ViewRequest from "../pages/dashboard/allRequest/viewRequest/ViewRequest";
 
 const router = createBrowserRouter([
     {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
             {
                 path: '/payment-success',
                 Component: PaymentSucces
-            }
+            },
         ]
     },
     {
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/all-requests",
                 Component: AllRequset
-            }
+            },
+            {
+                path: "/dashboard/view-request/:id",
+                Component: ViewRequest
+            },
         ]
     }
 ]);

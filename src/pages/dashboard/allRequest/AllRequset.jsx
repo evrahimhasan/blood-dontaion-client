@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const AllRequset = () => {
     const axiosSecure = useAxiosSecure();
@@ -89,6 +88,8 @@ const AllRequset = () => {
             }
         });
     };
+
+   
 
 
     if (loading) {
@@ -182,7 +183,7 @@ const AllRequset = () => {
                                                             Done
                                                         </button>
                                                         <button
-                                                            
+                                                           
                                                             className="btn btn-xs btn-outline btn-error"
                                                         >
                                                             Cancel
@@ -190,7 +191,7 @@ const AllRequset = () => {
                                                     </>
                                                 )}
 
-                                                <Link to={`/Dashboard/view-request/${request._id}`}>
+                                                <Link to={`/dashboard/view-request/${request._id}`}>
                                                     <button className="btn btn-xs btn-outline">View</button>
                                                 </Link>
 
