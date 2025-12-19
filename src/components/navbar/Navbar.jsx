@@ -39,8 +39,8 @@ const Navbar = () => {
                                 "text-red-700 underline" : ""}>Request Blood</NavLink>
                             <NavLink to="my-listings" className={({ isActive }) => isActive ?
                                 "text-red-700 underline" : ""}>Find Donor</NavLink>
-                            <NavLink to="my-orders" className={({ isActive }) => isActive ?
-                                "text-red-700 underline" : ""}>Blood Camps</NavLink>
+                            <NavLink to="donation" className={({ isActive }) => isActive ?
+                                "text-red-700 underline" : ""}>Donation</NavLink>
                         </>
                     )
                 }
