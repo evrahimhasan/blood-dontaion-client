@@ -31,8 +31,8 @@ const Navbar = () => {
             <div className="nav flex flex-col md:flex-row gap-5 items-center">
                 <NavLink to="/" className={({ isActive }) => isActive ?
                     "text-red-700 underline" : ""}>Home</NavLink>
-                <NavLink to="/pets" className={({ isActive }) => isActive ?
-                    "text-red-700 underline" : ""}>Donate Blood</NavLink>
+                <NavLink to="/donation-request" className={({ isActive }) => isActive ?
+                    "text-red-700 underline" : ""}>Donation Request</NavLink>
                 {
                     user && (
                         <>

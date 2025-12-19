@@ -13,6 +13,8 @@ import Donation from "../pages/donation/Donation";
 import PaymentSucces from "../pages/paymentSucces/PaymentSucces";
 import AllRequset from "../pages/dashboard/allRequest/AllRequset";
 import ViewRequest from "../pages/dashboard/allRequest/viewRequest/ViewRequest";
+import DonationRequest from "../components/donationRequest/DonationRequest";
+import ShowDonationRequest from "../components/showDonationRequest/ShowDonationRequest";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
             {
                 path: '/donation',
                 Component: Donation
+            },
+            {
+                path: '/donation-request',
+                Component: DonationRequest
+            },
+            {
+                path: '/donation-request/:id',
+                Component: ShowDonationRequest
             },
             {
                 path: '/payment-success',
