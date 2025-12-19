@@ -25,7 +25,7 @@ const Navbar = () => {
             {/* <div className=''>{user && user.email}</div> */}
             <div className="flex items-center gap-2 mb-3">
                 <FaDroplet className="text-3xl text-red-600" />
-                <h2 className="text-2xl text-orange-900 font-bold tracking-wide">BloodLife</h2>
+                <h2 className="text-2xl text-orange-900 font-bold tracking-wide">LifeDrop</h2>
             </div>
             <div className="nav flex flex-col md:flex-row gap-5 items-center">
                 <NavLink to="/" className={({ isActive }) => isActive ?
@@ -48,7 +48,7 @@ const Navbar = () => {
             </div>
 
             <div className='flex justify-center items-center gap-4'>
-                 <Link to='/dashboard' className='btn mr-2'>Dashboard</Link>
+                <Link to='/dashboard' className='btn mr-2'>Dashboard</Link>
                 {
                     user ? (
                         <div className="dropdown dropdown-end">
