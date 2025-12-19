@@ -137,7 +137,7 @@ const AllRequset = () => {
                             <select
                                 value={selectedStatus}
                                 onChange={handleStatusChange}
-                                className="select  p-2 rounded-lg border-black bg-lime-300"
+                                className="select select-bordered"
 
                             >
                                 <option value="">All</option>

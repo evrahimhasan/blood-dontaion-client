@@ -1,9 +1,12 @@
 import React, { use, useState } from 'react';
 import { FiHome, FiLogOut, FiSettings, FiUsers } from 'react-icons/fi';
-import { NavLink} from 'react-router';
+import { NavLink } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { AiFillDashboard, AiFillHome, AiOutlineClose, AiOutlineLogout, AiOutlineMenu } from 'react-icons/ai';
+import { VscGitPullRequestGoToChanges } from 'react-icons/vsc';
+import { MdOutlinePublishedWithChanges } from 'react-icons/md';
+import { BiDonateBlood } from 'react-icons/bi';
 
 
 
@@ -41,11 +44,24 @@ const Aside = () => {
                 <div>
                     {/* LOGO / TITLE */}
                     <h2 className="text-3xl font-bold mb-8 text-white drop-shadow-md">
-                        Blood Dashboard
+                        Drop Life Dashboard
                     </h2>
 
                     {/* NAVIGATION */}
                     <nav className="flex-1 flex flex-col gap-3">
+
+                        <NavLink
+                            to="/"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) =>
+                                `flex items-center gap-3 p-3 rounded-lg transition hover:bg-gray-700 ${isActive ? "bg-indigo-600" : ""
+                                }`
+                            }
+                        >
+                            <AiFillHome size={20} />
+                            <span>Home</span>
+                        </NavLink>
+
                         <NavLink
                             to="/dashboard"
                             className={({ isActive }) =>
@@ -55,7 +71,7 @@ const Aside = () => {
                                 }`
                             }
                         >
-                            <FiHome className="h-5 w-5" /> Dashboard
+                            <AiFillDashboard className="h-5 w-5" /> Dashboard
                         </NavLink>
 
                         {role === "donor" && (
@@ -68,7 +84,7 @@ const Aside = () => {
                                     }`
                                 }
                             >
-                                <FiHome className="h-5 w-5" /> Add Request
+                                <MdOutlinePublishedWithChanges className="h-5 w-5" /> Add Request
                             </NavLink>
                         )}
 
@@ -86,17 +102,19 @@ const Aside = () => {
                             </NavLink>
                         )}
 
-                        <NavLink
-                            to="/dashboard/my-donation-requests"
-                            className={({ isActive }) =>
-                                `flex items-center gap-3 p-3 rounded-lg transition ${isActive
-                                    ? "bg-white text-red-600 font-semibold shadow-md"
-                                    : "hover:bg-red-500 hover:bg-opacity-80"
-                                }`
-                            }
-                        >
-                            <FiUsers className="h-5 w-5" /> My Request
-                        </NavLink>
+                        {role === 'donor' && (
+                            <NavLink
+                                to="/dashboard/my-donation-requests"
+                                className={({ isActive }) =>
+                                    `flex items-center gap-3 p-3 rounded-lg transition ${isActive
+                                        ? "bg-white text-red-600 font-semibold shadow-md"
+                                        : "hover:bg-red-500 hover:bg-opacity-80"
+                                    }`
+                                }
+                            >
+                                <BiDonateBlood className="h-5 w-5" /> My Request
+                            </NavLink>
+                        )}
 
                         {role === "admin" && (
                             <NavLink
@@ -108,7 +126,21 @@ const Aside = () => {
                                     }`
                                 }
                             >
-                                <FiUsers className="h-5 w-5" /> All Requests
+                                <BiDonateBlood className="h-5 w-5" /> All Requests
+                            </NavLink>
+                        )}
+
+                        {role === "volunteer" && (
+                            <NavLink
+                                to="/dashboard/all-requests"
+                                className={({ isActive }) =>
+                                    `flex items-center gap-3 p-3 rounded-lg transition ${isActive
+                                        ? "bg-white text-red-600 font-semibold shadow-md"
+                                        : "hover:bg-red-500 hover:bg-opacity-80"
+                                    }`
+                                }
+                            >
+                                <BiDonateBlood className="h-5 w-5" /> All Requests
                             </NavLink>
                         )}
                     </nav>
