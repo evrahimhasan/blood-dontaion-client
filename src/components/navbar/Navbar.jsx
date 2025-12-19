@@ -4,6 +4,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { Link, NavLink } from 'react-router';
 import { FaDroplet } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
+import { FaHeartbeat } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, logOut } = use(AuthContext)
@@ -24,8 +25,8 @@ const Navbar = () => {
         <div className="flex flex-col gap-3 md:flex-row justify-between items-center">
             {/* <div className=''>{user && user.email}</div> */}
             <div className="flex items-center gap-2 mb-3">
-                <FaDroplet className="text-3xl text-red-600" />
-                <h2 className="text-2xl text-orange-900 font-bold tracking-wide">LifeDrop</h2>
+                <FaHeartbeat className="text-3xl text-red-600" />
+                <h2 className="text-2xl font-bold tracking-wide">Drop Life</h2>
             </div>
             <div className="nav flex flex-col md:flex-row gap-5 items-center">
                 <NavLink to="/" className={({ isActive }) => isActive ?
