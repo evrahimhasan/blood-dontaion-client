@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Link } from 'react-router';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const MyRequest = () => {
     const axiosSecure = useAxiosSecure();
@@ -8,9 +12,11 @@ const MyRequest = () => {
     const [totalRequest, setTotalRequest] = useState(0);
     const [status, setStatus] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+
     const requestPerPage = 10;
 
-    useEffect(() => {
+    // fetch data
+    const fetchRequest = () => {
         axiosSecure
             .get(`/my-request?page=${currentPage - 1}&size=${requestPerPage}&status=${status}`)
             .then(res => {
@@ -18,26 +24,61 @@ const MyRequest = () => {
                 setTotalRequest(res.data.totalRequest);
             })
             .catch(err => console.log(err));
+    };
+
+    useEffect(() => {
+        fetchRequest();
     }, [axiosSecure, currentPage, status]);
 
     const numberOfPages = Math.ceil(totalRequest / requestPerPage);
     const pages = [...Array(numberOfPages).keys()].map(i => i + 1);
 
-    // console.log(requests);
-    // console.log(totalRequest);
-    // console.log(numberOfPages);
-    // console.log(pages);
-
     const handlePrev = () => {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1)
+            setCurrentPage(currentPage - 1);
         }
-    }
+    };
+
     const handleNext = () => {
-        if (currentPage < pages.length) {
-            setCurrentPage(currentPage + 1)
+        if (currentPage < numberOfPages) {
+            setCurrentPage(currentPage + 1);
         }
-    }
+    };
+
+    // delete
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/delete-request?id=${id}`)
+                    .then(() => {
+                        Swal.fire("Deleted!", "Your request has been deleted.", "success");
+                        fetchRequest();
+                    });
+            }
+        });
+    };
+
+    const hendleCencel = (id, status) => {
+        axiosSecure.patch(`/cancel-request?id=${id}&status=${status}`)
+            .then(() => {
+                fetchRequest();
+                toast.success("Request canceled successfully");
+            });
+    };
+
+    const hendleDone = (id, status) => {
+        axiosSecure.patch(`/done-request?id=${id}&status=${status}`)
+            .then(() => {
+                fetchRequest();
+                toast.success("Request marked as done");
+            });
+    };
 
     return (
         <div className="p-4">
@@ -109,6 +150,40 @@ const MyRequest = () => {
                                         >
                                             {request.donationStatus}
                                         </span>
+                                    </td>
+                                    <td className="space-x-1">
+                                        {request.donationStatus === "inprogress" && (
+                                            <>
+                                                <button
+                                                    onClick={() => hendleDone(request._id, "Done")}
+                                                    className="btn btn-xs btn-outline"
+                                                >
+                                                    Done
+                                                </button>
+                                                <button
+                                                    onClick={() => hendleCencel(request._id, "canceled")}
+                                                    className="btn btn-xs btn-outline btn-error"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        )}
+
+                                        <Link to={`/dashboard/view-request/${request._id}`}>
+                                            <button className="btn btn-xs btn-outline">View</button>
+                                        </Link>
+
+                                        {request.donationStatus === "pending" && (
+                                            <>
+                                                <button className="btn btn-xs btn-outline text-green-500">Edit</button>
+                                                <button
+                                                    onClick={() => handleDelete(request._id)}
+                                                    className="btn btn-xs btn-outline"
+                                                >
+                                                    <RiDeleteBin6Line size={15} />
+                                                </button>
+                                            </>
+                                        )}
                                     </td>
                                 </tr>
                             ))
