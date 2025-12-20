@@ -13,7 +13,7 @@ const AdminDashBoard = () => {
         axiosSecure.get("/users")
             .then(res => {
                 setUser(res.data.totaluser)
-                console.log(res.data);
+                // console.log(res.data);
             })
             .catch(error => {
                 console.log(error);
@@ -21,7 +21,7 @@ const AdminDashBoard = () => {
 
         axiosSecure.get(`/all-request`)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 setTotalRequest(res.data.totalRequest);
             })
             .catch((error) => {

@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
     }
 
 
-    console.log(user);
+    // console.log(user);
 
 
     useEffect(() => {
@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (!user) return
-        axios.get(`http://localhost:5000/user/role/${user.email}`)
+        axios.get(`https://drop-life.vercel.app/user/role/${user.email}`)
             .then(res => {
                 setRole(res.data.role);
                 setUserStatus(res.data.status)
@@ -73,7 +73,7 @@ const AuthProvider = ({ children }) => {
             })
     }, [user])
 
-    console.log(userStatus);
+    // console.log(userStatus);
 
     const authData = {
         user,

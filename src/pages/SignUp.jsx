@@ -82,7 +82,7 @@ const SignUp = () => {
 
                             // navigate('/')
                             // toast.success("SignUp Successful")
-                            axios.post('http://localhost:5000/user', formData)
+                            axios.post('https://drop-life.vercel.app/user', formData)
                                 .then(res => {
                                     console.log(res.data)
                                 })

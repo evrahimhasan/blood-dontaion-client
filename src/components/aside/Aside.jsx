@@ -27,7 +27,7 @@ const Aside = () => {
 
     return (
         <div className="flex min-h-screen bg-gray-100">
-            {/* MOBILE MENU BUTTON */}
+
             <button
                 onClick={() => setOpen(!open)}
                 className="lg:hidden p-4 text-2xl fixed top-4 left-4 z-50 bg-red-600 text-white rounded-full shadow-lg hover:bg-red-700 transition"
@@ -63,6 +63,7 @@ const Aside = () => {
 
                         <NavLink
                             to="/dashboard"
+                            end
                             className={({ isActive }) =>
                                 `flex items-center gap-3 p-3 rounded-lg transition ${isActive
                                     ? "bg-white text-red-600 font-semibold shadow-md"

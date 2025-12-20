@@ -16,7 +16,7 @@ const Donation = () => {
             donorName
         }
 
-        axios.post('http://localhost:5000/create-payment-checkout', formData)
+        axios.post('https://drop-life.vercel.app/create-payment-checkout', formData)
             .then(res => {
                 console.log(res.data);
                 window.location.href = res.data.url

@@ -22,13 +22,13 @@ const AllRequset = () => {
 
     }
 
-    console.log(selectedStatus);
+    // console.log(selectedStatus);
 
     const fetchRequest = () => {
         axiosSecure
             .get(`/All-request?page=${currentPage - 1}&size=${itemPerPage}&status=${selectedStatus}`)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 setAllrequest(res.data.request);
                 setTotalRequest(res.data.totalRequest);
                 setLoading(false)
@@ -248,8 +248,9 @@ const AllRequset = () => {
                 <button onClick={handlePrev} className="btn">
                     pre
                 </button>
-                {pages.map((page) => (
+                {pages.map((page, index) => (
                     <button
+                    key={index}
                         onClick={() => setCurrentPage(page)}
                         className={`btn ${page === currentPage ? " bg-[#435585] text-white " : " "
                             }`}
