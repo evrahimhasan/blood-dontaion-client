@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 
 import { Link, NavLink } from 'react-router';
@@ -8,7 +8,18 @@ import { FaHeartbeat } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, logOut } = use(AuthContext)
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
 
+    useEffect(() => {
+        const html = document.querySelector('html')
+        html.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+    }, [theme])
+
+
+    const handleTheme = (checked) => {
+        setTheme(checked ? "dark" : "light")
+    }
 
     const handleLogout = () => {
         // console.log('user try to logout');
@@ -47,7 +58,6 @@ const Navbar = () => {
             </div>
 
             <div className='flex justify-center items-center gap-4'>
-                <Link to='/dashboard' className='btn mr-2'>Dashboard</Link>
                 {
                     user ? (
                         <div className="dropdown dropdown-end">
@@ -66,10 +76,28 @@ const Navbar = () => {
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                             >
+
+                                <li>
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm font-medium">
+                                            Dark
+                                        </span>
+                                        <input
+                                            onChange={(e) => handleTheme(e.target.checked)}
+                                            type="checkbox"
+                                            defaultChecked={localStorage.getItem('theme') === "dark"}
+                                            className="toggle"
+                                        />
+                                    </div>
+                                </li>
+
                                 <li>
                                     <span className="font-semibold">
                                         {user.displayName || user.email}
                                     </span>
+                                </li>
+                                <li>
+                                    <Link to='/dashboard' className='btn bg-red-600'>My Dashboard</Link>
                                 </li>
                                 {/* <li>
                                     <span className="font-semibold">
