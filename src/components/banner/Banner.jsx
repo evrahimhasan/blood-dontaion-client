@@ -29,7 +29,7 @@ const Banner = () => {
                                     Join as a Donor
                                 </button>
                             </NavLink>
-                            <NavLink to="/search-request">
+                            <NavLink to="/search">
                                 <button className="px-6 py-3 rounded-2xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
                                     Search Donors
                                 </button>
@@ -65,7 +65,7 @@ const Banner = () => {
                                     Join as a Donor
                                 </button>
                             </NavLink>
-                            <NavLink to="/search-request">
+                            <NavLink to="/search">
                                 <button className="px-6 py-3 rounded-2xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
                                     Search Donors
                                 </button>
@@ -100,7 +100,7 @@ const Banner = () => {
                                     Join as a Donor
                                 </button>
                             </NavLink>
-                            <NavLink to="/search-request">
+                            <NavLink to="/search">
                                 <button className="px-6 py-3 rounded-2xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
                                     Search Donors
                                 </button>
