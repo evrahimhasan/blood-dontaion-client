@@ -80,7 +80,7 @@ const Navbar = () => {
                                 <li>
                                     <div className="flex items-center gap-2">
                                         <span className="text-sm font-medium">
-                                            Dark
+                                            Light
                                         </span>
                                         <input
                                             onChange={(e) => handleTheme(e.target.checked)}
@@ -88,6 +88,9 @@ const Navbar = () => {
                                             defaultChecked={localStorage.getItem('theme') === "dark"}
                                             className="toggle"
                                         />
+                                        <span className="text-sm font-medium">
+                                            Dark
+                                        </span>
                                     </div>
                                 </li>
 

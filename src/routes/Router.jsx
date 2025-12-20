@@ -17,6 +17,7 @@ import DonationRequest from "../components/donationRequest/DonationRequest";
 import ShowDonationRequest from "../components/showDonationRequest/ShowDonationRequest";
 import DonationDetails from "../components/donationDetails/DonationDetails";
 import Search from "../components/search/Search";
+import ErrorPage from "../components/errorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
                 Component: ViewRequest
             },
         ]
+    },
+    {
+        path: '/*',
+        element: <ErrorPage></ErrorPage>
     }
 ]);
 export default router;
