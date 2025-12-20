@@ -8,7 +8,7 @@ const AllUsers = () => {
     const fetchUser = () => {
         axiosSecure.get('/users')
             .then(res => {
-                setUsers(res.data)
+                setUsers(res.data.user)
             })
             .catch(error => {
                 console.log(error);

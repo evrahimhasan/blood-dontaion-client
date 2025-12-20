@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { use } from 'react';
+import AdminDashBoard from '../../adminDashBoard/AdminDashBoard';
+import { AuthContext } from '../../../provider/AuthProvider';
 
 const MainDashBoard = () => {
+    const { role } = use(AuthContext)
     return (
         <div>
-            Main Dash Board
+            {
+                role === "admin" && (
+                    <AdminDashBoard></AdminDashBoard>
+                )
+            }
         </div>
     );
 };
