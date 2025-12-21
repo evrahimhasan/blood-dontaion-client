@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import axios from 'axios';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const AddRequest = () => {
     const { user } = use(AuthContext)
@@ -59,7 +60,8 @@ const AddRequest = () => {
 
         axiosSecure.post('/requests', formData)
             .then(res => {
-                alert(res.data.insertedId)
+                toast.success('Request Added Successfully')
+                form.reset()
             })
             .catch(error => {
                 console.log(error);
@@ -228,7 +230,7 @@ const AddRequest = () => {
                 {/* Submit */}
                 <div className="pt-4">
                     <button
-                        // type="submit"
+                        type="submit"
                         className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition"
                     >
                         Request Donation

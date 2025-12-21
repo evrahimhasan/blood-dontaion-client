@@ -4,10 +4,11 @@ import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const SignUp = () => {
     const { createUser, setUser, updateUser } = use(AuthContext)
+    const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const [upazilas, setUpazilas] = useState([]);
     const [districts, setDistricts] = useState([]);
@@ -80,8 +81,8 @@ const SignUp = () => {
                         .then(() => {
                             setUser({ ...user, displayName: name, photoURL: mainPhoto })
 
-                            // navigate('/')
-                            // toast.success("SignUp Successful")
+                            navigate('/')
+                            toast.success("SignUp Successful")
                             axios.post('https://drop-life.vercel.app/user', formData)
                                 .then(res => {
                                     console.log(res.data)
