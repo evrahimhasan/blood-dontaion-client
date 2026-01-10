@@ -12,6 +12,7 @@ const Login = () => {
     const emailRef = useRef(null)
     const location = useLocation()
     const navigate = useNavigate()
+    const [formError, setFormError] = useState("");
     // console.log(location)
 
     const handleLogin = (e) => {
@@ -20,6 +21,14 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value
         // console.log({ email, password });
+
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            setFormError("Password must be at least 6 characters and include at least 1 uppercase letter, 1 lowercase letter, and 1 number.");
+            return;
+        }
+
         signIn(email, password)
             .then(result => {
                 const user = result.user;
@@ -29,9 +38,7 @@ const Login = () => {
                 // setUser(user)
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert(errorCode, errorMessage)
+                setFormError(error.message);
             });
     }
 
@@ -60,7 +67,7 @@ const Login = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                alert(errorCode, errorMessage)
+                toast.error(errorCode, errorMessage)
             });
     }
 
@@ -94,6 +101,12 @@ const Login = () => {
                             <span onClick={() => setShow(!show)} className="absolute right-7 top-8 cursor-pointer z-50">
                                 {show ? <IoEyeOff className="h-4 w-4"></IoEyeOff> : <FaEye className="h-4 w-4"></FaEye>}
                             </span>
+
+                            {formError && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {formError}
+                                </p>
+                            )}
                         </div>
 
                         <button

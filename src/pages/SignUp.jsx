@@ -12,6 +12,7 @@ const SignUp = () => {
     const [show, setShow] = useState(false);
     const [upazilas, setUpazilas] = useState([]);
     const [districts, setDistricts] = useState([]);
+    const [formError, setFormError] = useState("");
 
 
     useEffect(() => {
@@ -47,9 +48,9 @@ const SignUp = () => {
         // console.log(blood);
         // console.log({ name, photo, email, password });
 
-        const regExp = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-        if (!regExp.test(password)) {
-            toast.error("Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.");
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            setFormError("Password must be at least 6 characters and include at least 1 uppercase letter, 1 lowercase letter, and 1 number.");
             return;
         }
 
@@ -180,6 +181,12 @@ const SignUp = () => {
                             <span onClick={() => setShow(!show)} className="absolute right-7 top-8 cursor-pointer z-50">
                                 {show ? <IoEyeOff className="h-4 w-4"></IoEyeOff> : <FaEye className="h-4 w-4"></FaEye>}
                             </span>
+
+                            {formError && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {formError}
+                                </p>
+                            )}
                         </div>
 
                         <button type='submit' className="btn  mt-4 bg-gradient-to-r from-green-600 to-green-800 text-white">Sign Up</button>
