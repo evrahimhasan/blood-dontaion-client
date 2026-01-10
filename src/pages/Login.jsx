@@ -35,6 +35,20 @@ const Login = () => {
             });
     }
 
+    const handleDemoLogin = () => {
+        const demoEmail = "admin@gmail.com";
+        const demoPassword = "Admin@1";
+
+        signIn(demoEmail, demoPassword)
+            .then(() => {
+                toast.success('Demo User Logged in');
+                navigate(location.state ? location.state : '/');
+            })
+            .catch(error => {
+                toast.error(error.message);
+            });
+    };
+
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
@@ -82,9 +96,20 @@ const Login = () => {
                             </span>
                         </div>
 
-                        <button type='submit' className="btn  mt-4 bg-gradient-to-r from-green-600 to-green-800 text-white">Login</button>
+                        <button
+                            type='submit'
+                            className="btn  mt-4 bg-gradient-to-r from-green-600 to-green-800 text-white"
+                        >
+                            Login</button>
 
-
+                        {/* ✅ Demo Login Button */}
+                        <button
+                            type="button"
+                            onClick={handleDemoLogin}
+                            className="btn btn-outline mt-2"
+                        >
+                            Login as Demo User
+                        </button>
 
                         {/* Divider */}
                         <div className="flex w-full flex-col">

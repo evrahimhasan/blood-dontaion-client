@@ -97,7 +97,7 @@ const DonorDashBoard = () => {
 
                         <div className="mt-6">
                             <Link to={"/dashboard/my-donation-requests"}>
-                                <button className='btn bg-lime-500 hover:bg-lime-600'>View All Donation Request</button>
+                                <button className='btn bg-lime-500 hover:bg-lime-600'>View Your Donation Request</button>
                             </Link>
                         </div>
                     </div>
