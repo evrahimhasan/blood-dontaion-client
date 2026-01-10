@@ -2,6 +2,8 @@ import React from 'react';
 import Banner from '../../components/banner/Banner';
 import Featured from '../../components/featured/Featured';
 import Contact from '../../components/contact/Contact';
+import Statistics from '../../components/statistics/Statistics';
+import WhyDonate from '../../components/whyDonate/WhyDonate';
 
 const Home = () => {
     return (
@@ -9,6 +11,8 @@ const Home = () => {
             <Banner></Banner>
             <Featured></Featured>
             <Contact></Contact>
+            <Statistics></Statistics>
+            <WhyDonate></WhyDonate>
         </div>
     );
 };

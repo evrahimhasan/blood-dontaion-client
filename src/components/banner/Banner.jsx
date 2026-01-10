@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Banner = () => {
     return (
-        <div className="mt-5">
+        <div>
             <div className="carousel w-full rounded-2xl overflow-hidden relative">
 
                 <Carousel
