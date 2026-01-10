@@ -5,6 +5,7 @@ import Contact from '../../components/contact/Contact';
 import Statistics from '../../components/statistics/Statistics';
 import WhyDonate from '../../components/whyDonate/WhyDonate';
 import FAQ from '../../components/faq/FAQ';
+import Testimonials from '../../components/testimonials/Testimonials';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Statistics></Statistics>
             <WhyDonate></WhyDonate>
             <FAQ></FAQ>
+            <Testimonials></Testimonials>
         </div>
     );
 };
