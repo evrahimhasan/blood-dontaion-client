@@ -42,6 +42,10 @@ const router = createBrowserRouter([
                 Component: Donation
             },
             {
+                path: 'payment-success',
+                Component: PaymentSucces
+            },
+            {
                 path: '/donation-request',
                 Component: DonationRequest
             },
@@ -62,10 +66,6 @@ const router = createBrowserRouter([
                 element: <PriviteRoute>
                     <DonationDetails></DonationDetails>
                 </PriviteRoute>
-            },
-            {
-                path: '/payment-success',
-                Component: PaymentSucces
             },
         ]
     },

@@ -2,19 +2,21 @@ import axios from 'axios';
 import React, { use } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 
+
 const Donation = () => {
     const { user } = use(AuthContext)
     const handleCheckout = (e) => {
         e.preventDefault()
         const donateAmount = e.target.donateAmount.value;
         const donorEmail = user?.email;
-        const donorName = user?.name;
+        const donorName = user?.displayName;
 
         const formData = {
             donateAmount,
             donorEmail,
             donorName
         }
+        console.log(donorName);
 
         axios.post('https://drop-life.vercel.app/create-payment-checkout', formData)
             .then(res => {
@@ -24,7 +26,7 @@ const Donation = () => {
     }
     return (
         <div>
-            <form onSubmit={handleCheckout} className='fllex justify-center items-center min-h-screen gap-4' >
+            <form onSubmit={handleCheckout} className='flex justify-center items-center min-h-screen gap-4' >
                 <input
                     name='donateAmount'
                     type="text"
