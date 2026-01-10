@@ -18,6 +18,7 @@ import ShowDonationRequest from "../components/showDonationRequest/ShowDonationR
 import DonationDetails from "../components/donationDetails/DonationDetails";
 import Search from "../components/search/Search";
 import ErrorPage from "../components/errorPage/ErrorPage";
+import AboutUs from "../components/aboutUs/AboutUs";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: '/search',
                 Component: Search
+            },
+            {
+                path: '/about-us',
+                Component: AboutUs
             },
             {
                 path: '/donation-request/:id',

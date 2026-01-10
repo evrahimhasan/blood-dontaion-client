@@ -44,6 +44,8 @@ const Navbar = () => {
                     "text-red-700 underline" : ""}>Home</NavLink>
                 <NavLink to="/donation-request" className={({ isActive }) => isActive ?
                     "text-red-700 underline" : ""}>Donation Request</NavLink>
+                <NavLink to="/about-us" className={({ isActive }) => isActive ?
+                    "text-red-700 underline" : ""}>About Us</NavLink>
                 {
                     user && (
                         <>
