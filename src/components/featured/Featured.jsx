@@ -43,7 +43,7 @@ const Featured = () => {
                     {featuresData.map((feature, idx) => (
                         <div
                             key={idx}
-                            className="rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl"
+                            className="rounded-xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl"
                         >
                             {/* Icon */}
                             {feature.icon}

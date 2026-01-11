@@ -182,7 +182,11 @@ const Navbar = () => {
                     {/* User / Auth Buttons */}
                     {user ? (
                         <div className="hidden md:flex items-center gap-3">
-                            <Link to="/dashboard" className="btn bg-red-600 text-white">Dashboard</Link>
+                            <Link to="/dashboard"
+                                className="px-6 py-3 rounded-2xl bg-red-600 text-white 
+                                font-semibold shadow-lg hover:bg-red-700 transition transform 
+                                hover:-translate-y-1"
+                            >Dashboard</Link>
                             <div className="dropdown dropdown-end">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
@@ -197,8 +201,16 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className="hidden md:flex gap-2">
-                            <Link to="/login" className="btn btn-primary">Login</Link>
-                            <Link to="/signup" className="btn btn-outline">Sign Up</Link>
+                            <Link to="/login"
+                                className="px-6 py-3 rounded-2xl bg-red-600 text-white 
+                                font-semibold shadow-lg hover:bg-red-700 transition transform 
+                                hover:-translate-y-1"
+                            >Login</Link>
+                            <Link to="/signup"
+                                className="px-6 py-3 rounded-2xl bg-red-600 text-white 
+                                font-semibold shadow-lg hover:bg-red-700 transition transform 
+                                hover:-translate-y-1"
+                            >Sign Up</Link>
                         </div>
                     )}
 

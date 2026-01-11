@@ -11,7 +11,7 @@ const WhyDonate = () => {
             {/* Benefits Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
                 {/* Card 1 */}
-                <div className="rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">
+                <div className="rounded-xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">
                     <div className="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-red-600">
                         <img
                             src="https://i.ibb.co.com/dwpWjYCF/pic6.jpg"
@@ -26,7 +26,7 @@ const WhyDonate = () => {
                 </div>
 
                 {/* Card 2 */}
-                <div className="rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">
+                <div className="rounded-xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">
                     <div className="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-red-600">
                         <img
                             src="https://i.ibb.co.com/BHq66Xfc/pic5.jpg"
@@ -41,7 +41,7 @@ const WhyDonate = () => {
                 </div>
 
                 {/* Card 3 */}
-                <div className="rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">
+                <div className="rounded-xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">
                     <div className="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-red-600">
                         <img
                             src="https://i.ibb.co.com/LXNprsWB/pic4.jpg"
@@ -56,7 +56,7 @@ const WhyDonate = () => {
                 </div>
 
                 {/* Card 4 */}
-                <div className="rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">
+                <div className="rounded-xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">
                     <div className="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-red-600">
                         <img
                             src="https://i.ibb.co.com/LdjPcxnj/pic7.jpg"

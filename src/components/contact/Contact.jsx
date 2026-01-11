@@ -11,7 +11,7 @@ const Contact = () => {
 
                 <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
                     {/* Contact Form */}
-                    <div className="p-8 rounded-3xl shadow-xl transform transition hover:shadow-2xl">
+                    <div className="p-8 rounded-xl shadow-xl transform transition hover:shadow-2xl">
                         <form className="space-y-6">
                             <div>
                                 <label className="block text-lg font-semibold mb-2 text-red-700">Your Name</label>
@@ -50,7 +50,7 @@ const Contact = () => {
                     </div>
 
                     {/* Contact Info */}
-                    <div className="flex flex-col justify-center p-8 rounded-3xl shadow-xl transform transition hover:shadow-2xl">
+                    <div className="flex flex-col justify-center p-8 rounded-xl shadow-xl transform transition hover:shadow-2xl">
                         <h3 className="text-2xl font-bold mb-4 text-red-700">Get in Touch</h3>
                         <p className="mb-6">
                             If you have any questions about donating blood, searching for donors, or need urgent assistance, we're here to help.

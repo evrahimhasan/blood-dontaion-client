@@ -49,7 +49,7 @@ const FAQ = () => {
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className="rounded-2xl shadow-lg overflow-hidden"
+                            className="rounded-xl shadow-lg overflow-hidden"
                         >
                             {/* Question */}
                             <button

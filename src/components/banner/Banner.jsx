@@ -7,7 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const Banner = () => {
     return (
         <div>
-            <div className="carousel w-full rounded-2xl overflow-hidden relative">
+            <div className="carousel w-full rounded-xl overflow-hidden relative">
 
                 <Carousel
                     autoPlay
@@ -36,12 +36,12 @@ const Banner = () => {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <NavLink to="/signUp">
-                                    <button className="px-6 py-3 rounded-2xl bg-red-600 text-white font-semibold shadow-lg hover:bg-red-700 transition transform hover:-translate-y-1">
+                                    <button className="px-6 py-3 rounded-xl bg-red-600 text-white font-semibold shadow-lg hover:bg-red-700 transition transform hover:-translate-y-1">
                                         Join as a Donor
                                     </button>
                                 </NavLink>
                                 <NavLink to="/search">
-                                    <button className="px-6 py-3 rounded-2xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
+                                    <button className="px-6 py-3 rounded-xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
                                         Search Donors
                                     </button>
                                 </NavLink>
@@ -72,12 +72,12 @@ const Banner = () => {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <NavLink to="/signUp">
-                                    <button className="px-6 py-3 rounded-2xl bg-red-600 text-white font-semibold shadow-lg hover:bg-red-700 transition transform hover:-translate-y-1">
+                                    <button className="px-6 py-3 rounded-xl bg-red-600 text-white font-semibold shadow-lg hover:bg-red-700 transition transform hover:-translate-y-1">
                                         Join as a Donor
                                     </button>
                                 </NavLink>
                                 <NavLink to="/search">
-                                    <button className="px-6 py-3 rounded-2xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
+                                    <button className="px-6 py-3 rounded-xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
                                         Search Donors
                                     </button>
                                 </NavLink>
@@ -107,12 +107,12 @@ const Banner = () => {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <NavLink to="/signUp">
-                                    <button className="px-6 py-3 rounded-2xl bg-red-600 text-white font-semibold shadow-lg hover:bg-red-700 transition transform hover:-translate-y-1">
+                                    <button className="px-6 py-3 rounded-xl bg-red-600 text-white font-semibold shadow-lg hover:bg-red-700 transition transform hover:-translate-y-1">
                                         Join as a Donor
                                     </button>
                                 </NavLink>
                                 <NavLink to="/search">
-                                    <button className="px-6 py-3 rounded-2xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
+                                    <button className="px-6 py-3 rounded-xl bg-white text-red-600 font-semibold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1">
                                         Search Donors
                                     </button>
                                 </NavLink>
