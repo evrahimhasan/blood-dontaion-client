@@ -4,7 +4,7 @@ import { NavLink } from 'react-router';
 const MissionSnippet = () => {
     return (
         <section className="bg-gray-50">
-            <div className="container mx-auto px-4 text-center">
+            <div className="text-center">
                 <h2 className="text-4xl font-bold text-red-600 mb-6">Our Mission</h2>
                 <p className="text-gray-700 max-w-2xl mx-auto mb-6">
                     We aim to connect donors with those in need of blood through a seamless, user-friendly platform.

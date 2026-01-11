@@ -8,6 +8,7 @@ const WhyDonate = () => {
                 Why Donate Blood?
             </h2>
 
+            {/* Benefits Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
                 {/* Card 1 */}
                 <div className="bg-white rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl">

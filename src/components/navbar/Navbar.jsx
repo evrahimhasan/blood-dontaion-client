@@ -5,10 +5,12 @@ import { Link, NavLink } from 'react-router';
 import { FaDroplet } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 import { FaHeartbeat } from 'react-icons/fa';
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
 const Navbar = () => {
     const { user, logOut } = use(AuthContext)
     const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const html = document.querySelector('html')
@@ -32,105 +34,222 @@ const Navbar = () => {
             });
 
     }
+
+    const navClass = ({ isActive }) =>
+        `block px-3 py-2 rounded-md font-medium transition ${isActive
+            ? "text-red-600 underline font-semibold"
+            : "text-gray-700 hover:text-red-600"
+        }`;
+
+
     return (
-        <div className="flex flex-col gap-3 md:flex-row justify-between items-center">
-            {/* <div className=''>{user && user.email}</div> */}
-            <div className="flex items-center gap-2 mb-3">
-                <FaHeartbeat className="text-3xl text-red-600" />
-                <h2 className="text-2xl font-bold tracking-wide">Drop Life</h2>
-            </div>
-            <div className="nav flex flex-col md:flex-row gap-5 items-center">
-                <NavLink to="/" className={({ isActive }) => isActive ?
-                    "text-red-700 underline" : ""}>Home</NavLink>
-                <NavLink to="/donation-request" className={({ isActive }) => isActive ?
-                    "text-red-700 underline" : ""}>Donation Request</NavLink>
-                <NavLink to="/about-us" className={({ isActive }) => isActive ?
-                    "text-red-700 underline" : ""}>About Us</NavLink>
-                {
-                    user && (
+        // <div className="max-w-11/12 mx-auto flex flex-col gap-3 md:flex-row justify-between items-center">
+        //     {/* <div className=''>{user && user.email}</div> */}
+        //     <div className="flex items-center gap-2 mb-3">
+        //         <FaHeartbeat className="text-3xl text-red-600" />
+        //         <h2 className="text-2xl font-bold tracking-wide">Drop Life</h2>
+        //     </div>
+        //     <div className="nav flex flex-col md:flex-row gap-5 items-center">
+        //         <NavLink to="/" className={({ isActive }) => isActive ?
+        //             "text-red-700 underline" : ""}>Home</NavLink>
+        //         <NavLink to="/donation-request" className={({ isActive }) => isActive ?
+        //             "text-red-700 underline" : ""}>Donation Request</NavLink>
+        //         <NavLink to="/about-us" className={({ isActive }) => isActive ?
+        //             "text-red-700 underline" : ""}>About Us</NavLink>
+        //         {
+        //             user && (
+        //                 <>
+        //                     <NavLink to="search" className={({ isActive }) => isActive ?
+        //                         "text-red-700 underline" : ""}>Search</NavLink>
+        //                     <NavLink to="donation" className={({ isActive }) => isActive ?
+        //                         "text-red-700 underline" : ""}>Donation</NavLink>
+        //                 </>
+        //             )
+        //         }
+
+        //     </div>
+
+        //     <div className='flex justify-center items-center gap-4'>
+        //         {
+        //             user ? (
+        //                 <div className="dropdown dropdown-end">
+        //                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+        //                         <div className="w-10 rounded-full">
+        //                             <img
+        //                                 alt="User Avatar"
+        //                                 src={user.photoURL || 'https://img.icons8.com/?size=64&id=115318&format=png'}
+        //                             />
+        //                         </div>
+        //                     </div>
+
+
+
+        //                     <ul
+        //                         tabIndex={0}
+        //                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+        //                     >
+
+        //                         <li>
+        //                             <div className="flex items-center gap-2">
+        //                                 <span className="text-sm font-medium">
+        //                                     Light
+        //                                 </span>
+        //                                 <input
+        //                                     onChange={(e) => handleTheme(e.target.checked)}
+        //                                     type="checkbox"
+        //                                     defaultChecked={localStorage.getItem('theme') === "dark"}
+        //                                     className="toggle"
+        //                                 />
+        //                                 <span className="text-sm font-medium">
+        //                                     Dark
+        //                                 </span>
+        //                             </div>
+        //                         </li>
+
+        //                         <li>
+        //                             <span className="font-semibold">
+        //                                 {user.displayName || user.email}
+        //                             </span>
+        //                         </li>
+        //                         <li>
+        //                             <Link to='/dashboard' className='btn bg-red-600'>My Dashboard</Link>
+        //                         </li>
+        //                         {/* <li>
+        //                             <span className="font-semibold">
+        //                                 <Link to='/myprofile'>Update Profile</Link>
+        //                             </span>
+        //                         </li> */}
+
+        //                         <li>
+        //                             <button onClick={handleLogout}>Logout</button>
+        //                         </li>
+        //                     </ul>
+
+        //                 </div>
+        //             ) : (
+        //                 <div className='flex gap-3'>
+        //                     <div className="login-btn">
+        //                         <Link to='/login' className="btn btn-primary px-10 ">Login</Link>
+        //                     </div>
+        //                     <div className="login-btn">
+        //                         <Link to='/signup' className="btn btn-primary px-10 ">Sign Up</Link>
+        //                     </div>
+        //                 </div>
+        //             )
+        //         }
+
+
+        //     </div>
+
+        // </div>
+
+        <div>
+            {/* Top Navbar */}
+            <div className="w-11/12 mx-auto flex flex-col gap-3 md:flex-row justify-between items-center">
+                {/* Logo */}
+                <Link to='/' className="flex items-center gap-2">
+                    <FaHeartbeat className="text-3xl text-red-600" />
+                    <h2 className="text-2xl font-bold tracking-wide">Drop Life</h2>
+                </Link>
+
+                {/* Desktop Menu */}
+                <div className="hidden md:flex gap-5 items-center">
+                    <NavLink to="/" className={navClass}>Home</NavLink>
+                    <NavLink to="/donation-request" className={navClass}>Donation Request</NavLink>
+                    <NavLink to="/about-us" className={navClass}>About Us</NavLink>
+                    {user && (
                         <>
-                            <NavLink to="search" className={({ isActive }) => isActive ?
-                                "text-red-700 underline" : ""}>Search</NavLink>
-                            <NavLink to="donation" className={({ isActive }) => isActive ?
-                                "text-red-700 underline" : ""}>Donation</NavLink>
+                            <NavLink to="/search" className={navClass}>Search</NavLink>
+                            <NavLink to="/donation" className={navClass}>Donation</NavLink>
                         </>
-                    )
-                }
+                    )}
+                </div>
 
-            </div>
+                {/* Right Side */}
+                <div className="flex items-center gap-4">
+                    {/* Theme Toggle */}
+                    <div className="hidden md:flex items-center gap-2">
+                        <MdLightMode className='text-yellow-500' />
+                        <input
+                            type="checkbox"
+                            checked={theme === "dark"}
+                            onChange={(e) => handleTheme(e.target.checked)}
+                            className="toggle"
+                        />
+                        <MdDarkMode className='text-gray-500' />
+                    </div>
 
-            <div className='flex justify-center items-center gap-4'>
-                {
-                    user ? (
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img
-                                        alt="User Avatar"
-                                        src={user.photoURL || 'https://img.icons8.com/?size=64&id=115318&format=png'}
-                                    />
-                                </div>
-                            </div>
-
-
-
-                            <ul
-                                tabIndex={0}
-                                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-                            >
-
-                                <li>
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-sm font-medium">
-                                            Light
-                                        </span>
-                                        <input
-                                            onChange={(e) => handleTheme(e.target.checked)}
-                                            type="checkbox"
-                                            defaultChecked={localStorage.getItem('theme') === "dark"}
-                                            className="toggle"
-                                        />
-                                        <span className="text-sm font-medium">
-                                            Dark
-                                        </span>
+                    {/* User / Auth Buttons */}
+                    {user ? (
+                        <div className="hidden md:flex items-center gap-3">
+                            <Link to="/dashboard" className="btn bg-red-600 text-white">Dashboard</Link>
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user.photoURL || "https://img.icons8.com/?size=64&id=115318&format=png"} alt="User Avatar" />
                                     </div>
-                                </li>
-
-                                <li>
-                                    <span className="font-semibold">
-                                        {user.displayName || user.email}
-                                    </span>
-                                </li>
-                                <li>
-                                    <Link to='/dashboard' className='btn bg-red-600'>My Dashboard</Link>
-                                </li>
-                                {/* <li>
-                                    <span className="font-semibold">
-                                        <Link to='/myprofile'>Update Profile</Link>
-                                    </span>
-                                </li> */}
-
-                                <li>
-                                    <button onClick={handleLogout}>Logout</button>
-                                </li>
-                            </ul>
-
+                                </div>
+                                <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li><span>{user.displayName || user.email}</span></li>
+                                    <li><button onClick={handleLogout}>Logout</button></li>
+                                </ul>
+                            </div>
                         </div>
                     ) : (
-                        <div className='flex gap-3'>
-                            <div className="login-btn">
-                                <Link to='/login' className="btn btn-primary px-10 ">Login</Link>
-                            </div>
-                            <div className="login-btn">
-                                <Link to='/signup' className="btn btn-primary px-10 ">Sign Up</Link>
-                            </div>
+                        <div className="hidden md:flex gap-2">
+                            <Link to="/login" className="btn btn-primary">Login</Link>
+                            <Link to="/signup" className="btn btn-outline">Sign Up</Link>
                         </div>
-                    )
-                }
+                    )}
 
-
+                    {/* Mobile Hamburger */}
+                    <div className="md:hidden">
+                        <button
+                            className="text-2xl btn btn-ghost"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            ☰
+                        </button>
+                    </div>
+                </div>
             </div>
 
+            {/* Mobile Menu */}
+            {isOpen && (
+                <div className="md:hidden bg-base-100 shadow-lg p-4 space-y-3">
+                    <NavLink to="/" onClick={() => setIsOpen(false)} className={navClass}>Home</NavLink>
+                    <NavLink to="/donation-request" onClick={() => setIsOpen(false)} className={navClass}>Donation Request</NavLink>
+                    <NavLink to="/about-us" onClick={() => setIsOpen(false)} className={navClass}>About Us</NavLink>
+                    {user && (
+                        <>
+                            <NavLink to="/search" onClick={() => setIsOpen(false)} className={navClass}>Search</NavLink>
+                            <NavLink to="/donation" onClick={() => setIsOpen(false)} className={navClass}>Donation</NavLink>
+                        </>
+                    )}
+
+                    {/* Mobile Theme */}
+                    <div className="flex items-center gap-2 mt-3">
+                        <MdLightMode className='text-yellow-500' />
+                        <input
+                            type="checkbox"
+                            checked={theme === "dark"}
+                            onChange={(e) => handleTheme(e.target.checked)}
+                            className="toggle"
+                        />
+                        <MdDarkMode className='text-gray-500' />
+                    </div>
+
+                    {/* Mobile Auth Buttons */}
+                    {user ? (
+                        <button onClick={handleLogout} className="btn btn-error w-full mt-3">Logout</button>
+                    ) : (
+                        <div className="flex flex-col gap-2 mt-3">
+                            <Link to="/login" className="btn btn-primary w-full">Login</Link>
+                            <Link to="/signup" className="btn btn-outline w-full">Sign Up</Link>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 };
