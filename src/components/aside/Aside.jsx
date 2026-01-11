@@ -1,10 +1,10 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { FiHome, FiLogOut, FiSettings, FiUsers } from 'react-icons/fi';
 import { NavLink } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { AiFillDashboard, AiFillHome, AiOutlineClose, AiOutlineLogout, AiOutlineMenu } from 'react-icons/ai';
-import { MdOutlinePublishedWithChanges } from 'react-icons/md';
+import { MdDarkMode, MdLightMode, MdOutlinePublishedWithChanges } from 'react-icons/md';
 import { BiDonateBlood } from 'react-icons/bi';
 
 
@@ -12,6 +12,20 @@ import { BiDonateBlood } from 'react-icons/bi';
 const Aside = () => {
     const { role, logOut } = use(AuthContext)
     const [open, setOpen] = useState(false);
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+
+
+
+    useEffect(() => {
+        const html = document.querySelector('html')
+        html.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+    }, [theme])
+
+    const handleTheme = (checked) => {
+        setTheme(checked ? "dark" : "light")
+    }
+
 
     const handleLogout = () => {
         // console.log('user try to logout');
@@ -154,6 +168,17 @@ const Aside = () => {
                         >
                             <BiDonateBlood className="h-5 w-5" /> My Profile
                         </NavLink>
+                        {/* Theme Toggle */}
+                        <div className="flex items-center gap-2">
+                            <MdLightMode className='text-yellow-500' />
+                            <input
+                                type="checkbox"
+                                checked={theme === "dark"}
+                                onChange={(e) => handleTheme(e.target.checked)}
+                                className="toggle"
+                            />
+                            <MdDarkMode className='text-gray-500' />
+                        </div>
                     </nav>
                 </div>
 

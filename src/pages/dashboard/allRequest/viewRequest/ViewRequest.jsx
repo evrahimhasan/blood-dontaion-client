@@ -20,10 +20,10 @@ const ViewRequest = () => {
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
-            <div className="bg-white rounded-2xl shadow-lg border border-red-100 overflow-hidden">
+            <div className="rounded-2xl shadow-lg border border-red-100 overflow-hidden">
 
                 {/* ===== Header ===== */}
-                <div className="bg-gradient-to-r from-red-600 to-red-500 text-white p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="bg-gradient-to-r from-red-600 to-red-500 p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
                         <h2 className="text-2xl font-bold">
                             {data?.recipientName}
@@ -50,15 +50,15 @@ const ViewRequest = () => {
 
                     {/* Blood + Hospital */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="bg-red-50 border border-red-200 rounded-xl p-5 text-center">
-                            <p className="text-sm text-gray-500">Blood Group</p>
+                        <div className="border border-red-200 rounded-xl p-5 text-center">
+                            <p className="text-sm">Blood Group</p>
                             <p className="text-3xl font-extrabold text-red-600">
                                 {data?.bloodGroup}
                             </p>
                         </div>
 
-                        <div className="bg-gray-50 border rounded-xl p-5">
-                            <p className="text-sm text-gray-500">Hospital</p>
+                        <div className="border rounded-xl p-5">
+                            <p className="text-sm">Hospital</p>
                             <p className="font-semibold text-gray-800">
                                 {data?.hospital}
                             </p>
@@ -66,40 +66,40 @@ const ViewRequest = () => {
                     </div>
 
                     {/* Location */}
-                    <div className="bg-gray-50 border rounded-xl p-5">
-                        <p className="text-sm text-gray-500">Location</p>
-                        <p className="font-medium text-gray-800">
+                    <div className="border rounded-xl p-5">
+                        <p className="text-sm">Location</p>
+                        <p className="font-medium">
                             {data?.address}, {data?.recipientUpazila}, {data?.recipientDistrict}
                         </p>
                     </div>
 
                     {/* Date & Time */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="bg-white border rounded-xl p-5">
-                            <p className="text-sm text-gray-500">Donation Date</p>
-                            <p className="font-semibold text-gray-800">
+                        <div className="border rounded-xl p-5">
+                            <p className="text-sm">Donation Date</p>
+                            <p className="font-semibold">
                                 {data?.donationDate}
                             </p>
                         </div>
-                        <div className="bg-white border rounded-xl p-5">
-                            <p className="text-sm text-gray-500">Donation Time</p>
-                            <p className="font-semibold text-gray-800">
+                        <div className="border rounded-xl p-5">
+                            <p className="text-sm">Donation Time</p>
+                            <p className="font-semibold">
                                 {data?.donationTime}
                             </p>
                         </div>
                     </div>
 
                     {/* Message */}
-                    <div className="bg-red-50 border border-red-200 rounded-xl p-5">
-                        <p className="text-sm text-gray-500 mb-1">Request Message</p>
-                        <p className="text-gray-800 leading-relaxed">
+                    <div className="border border-red-200 rounded-xl p-5">
+                        <p className="text-sm mb-1">Request Message</p>
+                        <p className="leading-relaxed">
                             {data?.message}
                         </p>
                     </div>
                 </div>
 
                 {/* ===== Footer ===== */}
-                <div className="bg-gray-50 border-t px-6 py-4 flex flex-col sm:flex-row sm:justify-between gap-2 text-sm text-gray-600">
+                <div className="border-t px-6 py-4 flex flex-col sm:flex-row sm:justify-between gap-2 text-sm">
                     <span className='flex justify-center items-center gap-2'>
                         <MdOutlineEmail /> {data?.requesterEmail}
                     </span>
