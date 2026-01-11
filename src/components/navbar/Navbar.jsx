@@ -81,7 +81,7 @@ const Navbar = () => {
 
                     {/* User / Auth Buttons */}
                     {user ? (
-                        <div className="hidden md:flex items-center gap-3">
+                        <div className="flex items-center gap-3">
                             <Link to="/dashboard"
                                 className="px-6 py-3 rounded-2xl bg-red-600 text-white 
                                 font-semibold shadow-lg hover:bg-red-700 transition transform 
