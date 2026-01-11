@@ -64,7 +64,7 @@ const MyRequest = () => {
         });
     };
 
-    const hendleCencel = (id, status) => {
+    const handleCancel = (id, status) => {
         axiosSecure.patch(`/cancel-request?id=${id}&status=${status}`)
             .then(() => {
                 fetchRequest();
@@ -72,7 +72,7 @@ const MyRequest = () => {
             });
     };
 
-    const hendleDone = (id, status) => {
+    const handleDone = (id, status) => {
         axiosSecure.patch(`/done-request?id=${id}&status=${status}`)
             .then(() => {
                 fetchRequest();
@@ -81,17 +81,18 @@ const MyRequest = () => {
     };
 
     return (
-        <div className="p-4">
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold">My Donation Requests</h2>
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 py-6 overflow-x-hidden">
 
-                {/* filter */}
+            {/* HEADER */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+                <h2 className="text-3xl text-red-600 font-semibold">My Donation Requests</h2>
 
                 <select
-                    className="select select-bordered"
+                    className="select select-bordered w-full sm:w-52"
                     value={status}
                     onChange={e => {
                         setStatus(e.target.value);
+                        setCurrentPage(1);
                     }}
                 >
                     <option value="">All Status</option>
@@ -102,10 +103,10 @@ const MyRequest = () => {
                 </select>
             </div>
 
-
-            <div className="overflow-x-auto bg-white rounded-lg shadow">
-                <table className="table table-zebra">
-                    <thead className="bg-base-200">
+            {/* DESKTOP TABLE */}
+            <div className="hidden md:block overflow-x-auto rounded-lg shadow">
+                <table className="table table-zebra w-full">
+                    <thead>
                         <tr>
                             <th>#</th>
                             <th>Recipient</th>
@@ -114,75 +115,50 @@ const MyRequest = () => {
                             <th>Date</th>
                             <th>Time</th>
                             <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {requests.length === 0 ? (
                             <tr>
-                                <td colSpan="7" className="text-center py-10 text-gray-500">
+                                <td colSpan="8" className="text-center py-10">
                                     No donation requests found
                                 </td>
                             </tr>
                         ) : (
                             requests.map((request, index) => (
                                 <tr key={request._id}>
-                                    <td>
-                                        {(currentPage - 1) * requestPerPage + index + 1}
-                                    </td>
+                                    <td>{(currentPage - 1) * requestPerPage + index + 1}</td>
                                     <td>{request.recipientName}</td>
                                     <td>{request.hospital}</td>
-                                    <td>
-                                        <span className="font-semibold">
-                                            {request.bloodGroup}
-                                        </span>
-                                    </td>
+                                    <td>{request.bloodGroup}</td>
                                     <td>{request.donationDate}</td>
                                     <td>{request.donationTime}</td>
                                     <td>
-                                        <span
-                                            className={`badge capitalize
-      ${request.donationStatus === 'pending' && 'badge-warning'}
-      ${request.donationStatus === 'inprogress' && 'badge-info'}
-      ${request.donationStatus === 'done' && 'badge-success'}
-      ${request.donationStatus === 'canceled' && 'badge-error'}
-    `}
-                                        >
+                                        <span className={`badge capitalize
+                      ${request.donationStatus === 'pending' && 'badge-warning'}
+                      ${request.donationStatus === 'inprogress' && 'badge-info'}
+                      ${request.donationStatus === 'done' && 'badge-success'}
+                      ${request.donationStatus === 'canceled' && 'badge-error'}
+                    `}>
                                             {request.donationStatus}
                                         </span>
                                     </td>
                                     <td className="space-x-1">
                                         {request.donationStatus === "inprogress" && (
                                             <>
-                                                <button
-                                                    onClick={() => hendleDone(request._id, "Done")}
-                                                    className="btn btn-xs btn-outline"
-                                                >
-                                                    Done
-                                                </button>
-                                                <button
-                                                    onClick={() => hendleCencel(request._id, "canceled")}
-                                                    className="btn btn-xs btn-outline btn-error"
-                                                >
-                                                    Cancel
-                                                </button>
+                                                <button onClick={() => handleDone(request._id)} className="btn btn-xs">Done</button>
+                                                <button onClick={() => handleCancel(request._id)} className="btn btn-xs btn-error">Cancel</button>
                                             </>
                                         )}
-
                                         <Link to={`/dashboard/view-request/${request._id}`}>
                                             <button className="btn btn-xs btn-outline">View</button>
                                         </Link>
-
                                         {request.donationStatus === "pending" && (
-                                            <>
-                                                <button className="btn btn-xs btn-outline text-green-500">Edit</button>
-                                                <button
-                                                    onClick={() => handleDelete(request._id)}
-                                                    className="btn btn-xs btn-outline"
-                                                >
-                                                    <RiDeleteBin6Line size={15} />
-                                                </button>
-                                            </>
+                                            <button onClick={() => handleDelete(request._id)} className="btn btn-xs btn-outline">
+                                                <RiDeleteBin6Line />
+                                            </button>
                                         )}
                                     </td>
                                 </tr>
@@ -192,7 +168,47 @@ const MyRequest = () => {
                 </table>
             </div>
 
-            {/* Pagination */}
+            {/* ================= MOBILE CARD VIEW ================= */}
+            <div className="md:hidden space-y-4">
+                {requests.map((request) => (
+                    <div key={request._id} className="rounded-lg shadow p-4 border">
+                        <div className="flex justify-between mb-2">
+                            <h3 className="font-semibold">{request.recipientName}</h3>
+                            <span className="badge badge-error">{request.bloodGroup}</span>
+                        </div>
+
+                        <p className="text-sm"><b>Hospital:</b> {request.hospital}</p>
+                        <p className="text-sm"><b>Date:</b> {request.donationDate}</p>
+                        <p className="text-sm"><b>Time:</b> {request.donationTime}</p>
+
+                        <p className="text-sm mt-1">
+                            <b>Status:</b>{" "}
+                            <span className="badge capitalize">{request.donationStatus}</span>
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mt-3">
+                            {request.donationStatus === "inprogress" && (
+                                <>
+                                    <button onClick={() => handleDone(request._id)} className="btn btn-sm flex-1">Done</button>
+                                    <button onClick={() => handleCancel(request._id)} className="btn btn-sm btn-error flex-1">Cancel</button>
+                                </>
+                            )}
+
+                            <Link to={`/dashboard/view-request/${request._id}`} className="w-full">
+                                <button className="btn btn-sm btn-outline w-full">View</button>
+                            </Link>
+
+                            {request.donationStatus === "pending" && (
+                                <button onClick={() => handleDelete(request._id)} className="btn btn-sm btn-outline w-full">
+                                    Delete
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* PAGINATION */}
             {numberOfPages > 1 && (
                 <div className="flex justify-center mt-6 gap-2">
                     <button
@@ -207,7 +223,7 @@ const MyRequest = () => {
                         <button
                             key={page}
                             className={`btn btn-sm ${page === currentPage
-                                ? 'bg-[#435585] text-white'
+                                ? 'bg-[#435585]'
                                 : ''
                                 }`}
                             onClick={() => setCurrentPage(page)}
