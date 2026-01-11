@@ -37,8 +37,8 @@ const FAQ = () => {
     };
 
     return (
-        <section className="bg-gray-50">
-            <div className="container mx-auto px-4 max-w-4xl">
+        <section className="">
+            <div className="container mx-auto max-w-4xl">
                 {/* Section Title */}
                 <h2 className="text-4xl sm:text-5xl font-bold text-center text-red-600 mb-16 drop-shadow-md">
                     Frequently Asked Questions
@@ -49,14 +49,14 @@ const FAQ = () => {
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                            className="rounded-2xl shadow-lg overflow-hidden"
                         >
                             {/* Question */}
                             <button
                                 onClick={() => toggleFAQ(index)}
                                 className="w-full flex justify-between items-center p-6 text-left"
                             >
-                                <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
+                                <h3 className="text-lg sm:text-xl font-semibold">
                                     {faq.question}
                                 </h3>
                                 <FaChevronDown
@@ -67,7 +67,7 @@ const FAQ = () => {
 
                             {/* Answer */}
                             {activeIndex === index && (
-                                <div className="px-6 pb-6 text-gray-700 text-base leading-relaxed">
+                                <div className="px-6 pb-6 text-base leading-relaxed">
                                     {faq.answer}
                                 </div>
                             )}

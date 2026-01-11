@@ -5,59 +5,72 @@ import { FaRegLightbulb, FaUsers } from 'react-icons/fa6';
 const AboutUs = () => {
     const aboutPoints = [
         {
-            icon: <FaHandsHelping className="text-red-600 w-10 h-10 mb-4" />,
+            icon: <FaHandsHelping className="w-10 h-10 text-red-600 dark:text-red-500" />,
             title: "Connecting Donors & Patients",
             description:
                 "Our platform bridges the gap between blood donors and patients in need, ensuring timely donations.",
         },
         {
-            icon: <FaUsers className="text-red-600 w-10 h-10 mb-4" />,
+            icon: <FaUsers className="w-10 h-10 text-red-600 dark:text-red-500" />,
             title: "User-Friendly Experience",
             description:
                 "Seamless registration and navigation makes it easy for donors to participate and manage donations.",
         },
         {
-            icon: <FaHeartbeat className="text-red-600 w-10 h-10 mb-4" />,
+            icon: <FaHeartbeat className="w-10 h-10 text-red-600 dark:text-red-500" />,
             title: "Efficient Donation Process",
             description:
                 "The application streamlines blood donation requests, scheduling, and management for maximum impact.",
         },
         {
-            icon: <FaRegLightbulb className="text-red-600 w-10 h-10 mb-4" />,
+            icon: <FaRegLightbulb className="w-10 h-10 text-red-600 dark:text-red-500" />,
             title: "Role-Based Access Control",
             description:
                 "Admins, managers, and users have defined roles to ensure smooth operation and security.",
         },
     ];
+
     return (
-        <section className="bg-white">
-            <div className="container mx-auto px-4">
-                {/* Section Title */}
-                <h2 className="text-4xl sm:text-5xl font-bold text-center text-red-600 mb-16 drop-shadow-md">
+        <section className="min-h-screen flex items-center justify-center dark:bg-gray-950 px-4">
+            <div className="w-full max-w-7xl">
+                {/* Title */}
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-red-600 dark:text-red-500 mb-6">
                     About Us
                 </h2>
 
-                {/* Objective / Intro Text */}
-                <p className="text-center text-gray-700 text-lg sm:text-xl max-w-3xl mx-auto mb-12">
-                    The Blood Donation Application is a user-friendly platform that facilitates blood donation activities.
-                    It connects donors with those in need, promoting a seamless and efficient donation process.
+                {/* Intro */}
+                <p className="text-center text-gray-700 dark:text-gray-400 text-lg max-w-3xl mx-auto mb-12">
+                    The Blood Donation Application is a user-friendly platform that
+                    facilitates blood donation activities by connecting donors with those
+                    in need through a seamless and efficient process.
                 </p>
 
-                {/* Features / Points */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+                {/* Cards */}
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {aboutPoints.map((point, idx) => (
                         <div
                             key={idx}
-                            className="bg-gray-50 rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl"
+                            className="
+                 dark:bg-gray-900
+                border border-gray-200 dark:border-gray-800
+                rounded-2xl
+                p-6
+                text-center
+                transition-all duration-300
+                hover:-translate-y-2 hover:shadow-xl
+              "
                         >
-                            {/* Icon */}
-                            {point.icon}
+                            <div className="flex justify-center mb-4">
+                                {point.icon}
+                            </div>
 
-                            {/* Title */}
-                            <h3 className="text-2xl font-semibold mb-4 text-red-700">{point.title}</h3>
+                            <h3 className="text-xl font-semibold text-red-700 dark:text-red-400 mb-3">
+                                {point.title}
+                            </h3>
 
-                            {/* Description */}
-                            <p className="text-gray-700">{point.description}</p>
+                            <p className="text-gray-700 dark:text-gray-400 text-sm leading-relaxed">
+                                {point.description}
+                            </p>
                         </div>
                     ))}
                 </div>

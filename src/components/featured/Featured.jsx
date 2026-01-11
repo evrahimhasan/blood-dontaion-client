@@ -31,7 +31,7 @@ const Featured = () => {
     ];
 
     return (
-        <section className="py-20 bg-gray-50">
+        <section className="">
             <div className="container mx-auto px-4">
                 {/* Section Title */}
                 <h2 className="text-4xl sm:text-5xl font-bold text-center text-red-600 mb-16 drop-shadow-md">
@@ -43,7 +43,7 @@ const Featured = () => {
                     {featuresData.map((feature, idx) => (
                         <div
                             key={idx}
-                            className="bg-white rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl"
+                            className="rounded-2xl shadow-xl p-8 text-center transform transition hover:-translate-y-3 hover:shadow-2xl"
                         >
                             {/* Icon */}
                             {feature.icon}
@@ -54,7 +54,7 @@ const Featured = () => {
                             </h3>
 
                             {/* Description */}
-                            <p className="text-gray-700">{feature.description}</p>
+                            <p className="text-shadow-gray-700">{feature.description}</p>
                         </div>
                     ))}
                 </div>

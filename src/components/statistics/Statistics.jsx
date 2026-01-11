@@ -3,7 +3,7 @@ import React from 'react';
 const Statistics = () => {
     return (
         <div>
-            <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-16 px-6 
+            <div className="bg-gradient-to-r from-[#C62828] to-[#D32F2F] text-white py-16 px-6 
             rounded-3xl shadow-lg">
                 <div className="grid md:grid-cols-4 gap-8 text-center">
                     <div className="transform transition hover:scale-105">

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contact = () => {
     return (
-        <section className="py-20 bg-red-50">
+        <section className="">
             <div className="container mx-auto px-4">
                 {/* Section Title */}
                 <h2 className="text-4xl sm:text-5xl font-bold text-center text-red-600 mb-16 drop-shadow-md">
@@ -11,7 +11,7 @@ const Contact = () => {
 
                 <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
                     {/* Contact Form */}
-                    <div className="bg-white p-8 rounded-3xl shadow-xl transform transition hover:shadow-2xl">
+                    <div className="p-8 rounded-3xl shadow-xl transform transition hover:shadow-2xl">
                         <form className="space-y-6">
                             <div>
                                 <label className="block text-lg font-semibold mb-2 text-red-700">Your Name</label>
@@ -50,17 +50,17 @@ const Contact = () => {
                     </div>
 
                     {/* Contact Info */}
-                    <div className="flex flex-col justify-center bg-white p-8 rounded-3xl shadow-xl transform transition hover:shadow-2xl">
+                    <div className="flex flex-col justify-center p-8 rounded-3xl shadow-xl transform transition hover:shadow-2xl">
                         <h3 className="text-2xl font-bold mb-4 text-red-700">Get in Touch</h3>
-                        <p className="text-gray-700 mb-6">
+                        <p className="mb-6">
                             If you have any questions about donating blood, searching for donors, or need urgent assistance, we're here to help.
                         </p>
-                        <ul className="space-y-4 text-lg text-gray-800">
+                        <ul className="space-y-4 text-lg">
                             <li><strong className="text-red-600">Emergency Hotline:</strong> 1-800-BLOOD-HELP (1-800-256-6343)</li>
                             <li><strong className="text-red-600">Email:</strong> support@lifedrop.org</li>
                             <li><strong className="text-red-600">Office Hours:</strong> Mon-Fri 9AM - 6PM</li>
                         </ul>
-                        <p className="mt-8 text-gray-700">
+                        <p className="mt-8">
                             For urgent blood requests, please use the Search Donors feature or call the hotline immediately.
                         </p>
                     </div>
