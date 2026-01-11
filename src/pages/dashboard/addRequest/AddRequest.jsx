@@ -70,7 +70,7 @@ const AddRequest = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow">
+        <div className="max-w-4xl mx-auto p-6 rounded-xl shadow">
             <h2 className="text-2xl font-bold mb-6">Create Donation Request</h2>
 
             <form
@@ -85,7 +85,7 @@ const AddRequest = () => {
                             type="text"
                             readOnly
                             value={user?.displayName || ""}
-                            className="w-full border rounded-lg px-4 py-2 bg-gray-100 cursor-not-allowed"
+                            className="w-full border rounded-lg px-4 py-2 cursor-not-allowed"
                         />
                     </div>
 
@@ -97,7 +97,7 @@ const AddRequest = () => {
                             type="email"
                             readOnly
                             value={user?.email || ""}
-                            className="w-full border rounded-lg px-4 py-2 bg-gray-100 cursor-not-allowed"
+                            className="w-full border rounded-lg px-4 py-2 cursor-not-allowed"
                         />
                     </div>
                 </div>

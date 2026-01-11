@@ -123,145 +123,156 @@ const AllRequset = () => {
         return <LoadingSpinner></LoadingSpinner>
     }
     return (
-        <div>
-            <div className="max-w-7xl mx-auto p-6">
-                <div className="card bg-base-100 shadow">
-                    <div className="card-body">
-                        {/* Page Title */}
-                        <h2 className="text-3xl text-red-600 font-semibold mb-4">
-                            My Donation Requests
-                        </h2>
-                        {/* Filter Section (Static UI Only) */}
+        <div className="w-full max-w-7xl mx-auto p-3 sm:px-6 py-6 overflow-x-hidden min-h-screen">
 
-                        <div className="">
-                            <select
-                                value={selectedStatus}
-                                onChange={handleStatusChange}
-                                className="select select-bordered"
+            <h2 className="text-3xl font-semibold text-red-600 mb-4">All Donation Requests</h2>
 
-                            >
-                                <option value="">All</option>
-                                <option value="pending">Pending</option>
-                                <option value="inprogress">In Progress</option>
-                                <option value="done">Done</option>
-                                <option value="canceled">Canceled</option>
-                            </select>
+            {/* Filter */}
+            <div className="mb-4">
+                <select
+                    value={selectedStatus}
+                    onChange={handleStatusChange}
+                    className="select select-bordered w-full max-w-xs"
+                >
+                    <option value="">All</option>
+                    <option value="pending">Pending</option>
+                    <option value="inprogress">In Progress</option>
+                    <option value="done">Done</option>
+                    <option value="canceled">Canceled</option>
+                </select>
+            </div>
+
+            {/* DESKTOP TABLE */}
+            <div className="hidden md:block shadow rounded-lg overflow-x-auto">
+                <table className="min-w-full table-auto">
+                    <thead className="bg-red-600">
+                        <tr>
+                            <th className="py-3 px-3 text-left">#</th>
+                            <th className="py-3 px-3 text-left">Recipient</th>
+                            <th className="py-3 px-3 text-left">Location</th>
+                            <th className="py-3 px-3 text-left">Date</th>
+                            <th className="py-3 px-3 text-left">Time</th>
+                            <th className="py-3 px-3 text-left">Blood</th>
+                            <th className="py-3 px-3 text-left">Status</th>
+                            <th className="py-3 px-3 text-left">Donor Info</th>
+                            <th className="py-3 px-3 text-center">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody className="divide-y divide-gray-200">
+                        {allrequest.length === 0 ? (
+                            <tr>
+                                <td colSpan={9} className="text-center py-10 text-gray-500">No requests found</td>
+                            </tr>
+                        ) : (
+                            allrequest.map((request, index) => (
+                                <tr
+                                    key={request._id}
+                                    className="hover:bg-gray-100 hover:text-gray-900 transition duration-200"
+                                >
+                                    <td className="py-2 px-3">{(currentPage - 1) * itemPerPage + index + 1}</td>
+                                    <td className="py-2 px-3">{request.recipientName}</td>
+                                    <td className="py-2 px-3">{request.hospital}</td>
+                                    <td className="py-2 px-3">{request.donationDate}</td>
+                                    <td className="py-2 px-3">{request.donationTime}</td>
+                                    <td className="py-2 px-3">
+                                        <span className="badge badge-error">{request.bloodGroup}</span>
+                                    </td>
+                                    <td className="py-2 px-3">
+                                        <span className={`px-2 py-1 rounded-full text-sm font-semibold text-white
+                      ${request.donationStatus === "pending" ? "bg-yellow-500" :
+                                                request.donationStatus === "inprogress" ? "bg-blue-500" :
+                                                    request.donationStatus === "done" ? "bg-green-500" : "bg-red-500"
+                                            }`}>
+                                            {request.donationStatus}
+                                        </span>
+                                    </td>
+                                    <td className="py-2 px-3">{request.donationStatus === "inprogress" ? request.requesterEmail : "-"}</td>
+                                    <td className="py-2 px-3 text-center space-x-1 flex justify-center flex-wrap gap-1">
+                                        {request.donationStatus === "inprogress" && (
+                                            <>
+                                                <button onClick={() => hendleDone(request._id, "done")} className="btn btn-xs btn-outline">Done</button>
+                                                <button onClick={() => hendleCencel(request._id, "canceled")} className="btn btn-xs btn-outline btn-error">Cancel</button>
+                                            </>
+                                        )}
+                                        <Link to={`/dashboard/view-request/${request._id}`}>
+                                            <button className="btn btn-xs btn-outline">View</button>
+                                        </Link>
+                                        {request.donationStatus === "pending" && (
+                                            <button onClick={() => handleDelete(request._id)} className="btn btn-xs btn-outline btn-error">Delete</button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
+            </div>
+
+            {/* MOBILE CARD VIEW */}
+            <div className="md:hidden space-y-4">
+                {allrequest.map(request => (
+                    <div key={request._id} className="shadow rounded-lg p-4 border w-full overflow-hidden">
+                        <div className="flex justify-between items-center mb-2">
+                            <div>
+                                <div className="font-semibold">{request.recipientName}</div>
+                                <div className="text-sm">{request.hospital}</div>
+                            </div>
+                            <span className={`px-2 py-1 rounded-full text-xs font-semibold
+                ${request.donationStatus === "pending" ? "bg-yellow-500" :
+                                    request.donationStatus === "inprogress" ? "bg-blue-500" :
+                                        request.donationStatus === "done" ? "bg-green-500" : "bg-red-500"
+                                }`}>
+                                {request.donationStatus}
+                            </span>
                         </div>
-
-
-                        {/* Donation Requests Table */}
-                        <div className="overflow-x-auto">
-                            <table className="table table-zebra">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Recipient Name</th>
-                                        <th>Location</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Blood Group</th>
-                                        <th>Status</th>
-                                        <th>Donor Info</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    {/* Pending Row */}
-                                    {allrequest.map((request, index) => (
-                                        <tr key={request._id}>
-                                            <td>{(currentPage - 1) * itemPerPage + index + 1}</td>
-                                            <td>{request.recipientName}</td>
-                                            <td>{request.hospital}</td>
-                                            <td>{request.donationDate}</td>
-                                            <td>{request.donationTime}</td>
-                                            <td>
-                                                <span className="badge badge-error">
-                                                    {request.bloodGroup}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span
-                                                    className={`px-3 py-1 rounded-full text-sm font-semibold text-white
-        ${request.donationStatus === "pending" && "bg-yellow-500"}
-        ${request.donationStatus === "inprogress" && "bg-blue-500"}
-        ${request.donationStatus === "done" && "bg-green-500"}
-        ${request.donationStatus === "canceled" && "bg-red-500"}
-      `}
-                                                >
-                                                    {request.donationStatus}
-                                                </span>
-                                            </td>
-
-                                            {/* ✅ FIXED Donor Info */}
-                                            <td>
-                                                {request.donationStatus === "inprogress"
-                                                    ? request.requesterEmail
-                                                    : "-"}
-                                            </td>
-
-                                            <td className="space-x-1">
-                                                {request.donationStatus === "inprogress" && (
-                                                    <>
-                                                        <button
-                                                            onClick={() => hendleDone(request._id, "done")}
-                                                            className="btn btn-xs btn-outline"
-                                                        >
-                                                            Done
-                                                        </button>
-                                                        <button
-                                                            onClick={() => hendleCencel(request._id, "canceled")}
-                                                            className="btn btn-xs btn-outline btn-error"
-                                                        >
-                                                            Cancel
-                                                        </button>
-                                                    </>
-                                                )}
-
-                                                <Link to={`/dashboard/view-request/${request._id}`}>
-                                                    <button className="btn btn-xs btn-outline">View</button>
-                                                </Link>
-
-                                                {request.donationStatus === "pending" && (
-                                                    <button
-                                                        onClick={() => handleDelete(request._id)}
-                                                        className="btn btn-xs btn-outline btn-error"
-                                                    >
-                                                        Delete
-                                                    </button>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                        <div className="flex flex-col gap-1">
+                            <div className="flex justify-between text-sm">
+                                <span>Date: {request.donationDate}</span>
+                                <span>Time: {request.donationTime}</span>
+                            </div>
+                            <div className="flex justify-between text-sm">
+                                <span>Blood: {request.bloodGroup}</span>
+                                <span>Donor: {request.donationStatus === "inprogress" ? request.requesterEmail : "-"}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2 mt-2">
+                                {request.donationStatus === "inprogress" && (
+                                    <>
+                                        <button onClick={() => hendleDone(request._id, "done")} className="btn btn-xs flex-1">Done</button>
+                                        <button onClick={() => hendleCencel(request._id, "canceled")} className="btn btn-xs flex-1 btn-error">Cancel</button>
+                                    </>
+                                )}
+                                <Link to={`/dashboard/view-request/${request._id}`} className="flex-1">
+                                    <button className="btn btn-xs bg-black w-full">View</button>
+                                </Link>
+                                {request.donationStatus === "pending" && (
+                                    <button onClick={() => handleDelete(request._id)} className="btn btn-xs flex-1 btn-error">Delete</button>
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            {
-                allrequest.length == 0 && <p className="text-4xl text-red-500 font-bold text-center">No Reusest Found</p>
-            }
-
-            <div className="flex justify-center mt-12 gap-5">
-                <button onClick={handlePrev} className="btn">
-                    pre
-                </button>
-                {pages.map((page, index) => (
-                    <button
-                    key={index}
-                        onClick={() => setCurrentPage(page)}
-                        className={`btn ${page === currentPage ? " bg-[#435585] text-white " : " "
-                            }`}
-                    >
-                        {page}
-                    </button>
                 ))}
-                <button onClick={handleNext} className="btn">
-                    Next
-                </button>
+
+                {allrequest.length === 0 && <p className="text-center text-red-500 font-bold text-lg mt-6">No requests found</p>}
             </div>
+
+            {/* Pagination */}
+            {numberofPages > 1 && (
+                <div className="flex flex-wrap justify-center gap-2 mt-6">
+                    <button onClick={handlePrev} disabled={currentPage === 1} className="btn btn-sm">Prev</button>
+                    {pages.map(page => (
+                        <button
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            className={`btn btn-sm ${page === currentPage ? "bg-[#435585] text-white" : ""}`}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                    <button onClick={handleNext} disabled={currentPage === numberofPages} className="btn btn-sm">Next</button>
+                </div>
+            )}
+
         </div>
 
     );
