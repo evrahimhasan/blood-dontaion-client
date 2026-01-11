@@ -34,12 +34,12 @@ const AboutUs = () => {
         <section className="min-h-screen flex items-center justify-center dark:bg-gray-950 px-4">
             <div className="w-full max-w-7xl">
                 {/* Title */}
-                <h2 className="text-4xl md:text-5xl font-bold text-center text-red-600 dark:text-red-500 mb-6">
+                <h2 className="text-3xl md:text-5xl font-bold text-center text-red-600 dark:text-red-500 mb-6">
                     About Us
                 </h2>
 
                 {/* Intro */}
-                <p className="text-center text-gray-700 dark:text-gray-400 text-lg max-w-3xl mx-auto mb-12">
+                <p className="text-center text-lg max-w-3xl mx-auto mb-12">
                     The Blood Donation Application is a user-friendly platform that
                     facilitates blood donation activities by connecting donors with those
                     in need through a seamless and efficient process.
@@ -68,7 +68,7 @@ const AboutUs = () => {
                                 {point.title}
                             </h3>
 
-                            <p className="text-gray-700 dark:text-gray-400 text-sm leading-relaxed">
+                            <p className="text-sm leading-relaxed">
                                 {point.description}
                             </p>
                         </div>

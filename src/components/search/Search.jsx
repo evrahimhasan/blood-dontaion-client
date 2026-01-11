@@ -54,7 +54,7 @@ const Search = () => {
                 <div className="max-w-7xl mx-auto px-4">
                     {/* Page Title */}
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-orange-500 mb-3">
+                        <h2 className="text-3xl font-bold text-red-500 mb-3">
                             Search Blood Donors
                         </h2>
                         <p className="text-base-content max-w-2xl mx-auto">
@@ -97,13 +97,13 @@ const Search = () => {
                         </form>
                     </div>
                     {
-                        filterData.length == 0 ? <h1 className='text-orange-500 text-center font-bold text-4xl'>No Request Found</h1>
+                        filterData.length == 0 ? <h1 className='text-red-500 text-center font-bold text-4xl'>No Request Found</h1>
 
                             : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {
                                     filterData.map(data => <div className="card bg-base-200 shadow-md">
                                         <div className="card-body">
-                                            <h3 className="text-xl font-bold text-orange-500">
+                                            <h3 className="text-xl font-bold text-red-500">
                                                 Blood Group: {data.blood}
                                             </h3>
                                             <p className="text-sm">Recipient Name: {data.recipientName}</p>

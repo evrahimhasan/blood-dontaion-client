@@ -34,7 +34,7 @@ const Featured = () => {
         <section className="">
             <div className="container mx-auto px-4">
                 {/* Section Title */}
-                <h2 className="text-4xl sm:text-5xl font-bold text-center text-red-600 mb-16 drop-shadow-md">
+                <h2 className="text-3xl sm:text-5xl font-bold text-center text-red-600 mb-16 drop-shadow-md">
                     Why Choose Our Blood Donation Program
                 </h2>
 

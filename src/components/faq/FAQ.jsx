@@ -40,7 +40,7 @@ const FAQ = () => {
         <section className="">
             <div className="container mx-auto max-w-4xl">
                 {/* Section Title */}
-                <h2 className="text-4xl sm:text-5xl font-bold text-center text-red-600 mb-16 drop-shadow-md">
+                <h2 className="text-3xl sm:text-5xl font-bold text-center text-red-600 mb-16 drop-shadow-md">
                     Frequently Asked Questions
                 </h2>
 

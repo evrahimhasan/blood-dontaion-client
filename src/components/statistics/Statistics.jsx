@@ -7,7 +7,7 @@ const Statistics = () => {
             rounded-xl shadow-lg">
                 <div className="grid md:grid-cols-4 gap-8 text-center">
                     <div className="transform transition hover:scale-105">
-                        <h3 className="text-4xl sm:text-5xl font-bold">100,000+</h3>
+                        <h3 className="text-3xl sm:text-5xl font-bold">100,000+</h3>
                         <p className="text-lg mt-2">Registered Donors</p>
                     </div>
                     <div className="transform transition hover:scale-105">
