@@ -19,6 +19,7 @@ import DonationDetails from "../components/donationDetails/DonationDetails";
 import Search from "../components/search/Search";
 import ErrorPage from "../components/errorPage/ErrorPage";
 import AboutUs from "../components/aboutUs/AboutUs";
+import MyProfile from "../components/myProfile/MyProfile";
 
 const router = createBrowserRouter([
     {
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
                 path: "/dashboard/view-request/:id",
                 Component: ViewRequest
             },
+            {
+                path: '/dashboard/myprofile',
+                Component: MyProfile
+            }
         ]
     },
     {
