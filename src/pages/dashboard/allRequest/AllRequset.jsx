@@ -128,12 +128,12 @@ const AllRequset = () => {
                 <div className="card bg-base-100 shadow">
                     <div className="card-body">
                         {/* Page Title */}
-                        <h2 className="text-2xl font-semibold mb-4">
+                        <h2 className="text-3xl text-red-600 font-semibold mb-4">
                             My Donation Requests
                         </h2>
                         {/* Filter Section (Static UI Only) */}
 
-                        <div className="text-black">
+                        <div className="">
                             <select
                                 value={selectedStatus}
                                 onChange={handleStatusChange}
