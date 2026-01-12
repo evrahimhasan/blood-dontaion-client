@@ -13,6 +13,8 @@ const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const [formError, setFormError] = useState("");
+    const [demoEmail, setDemoEmail] = useState("");
+    const [demoPassword, setDemoPassword] = useState("");
     // console.log(location)
 
     const handleLogin = (e) => {
@@ -43,17 +45,10 @@ const Login = () => {
     }
 
     const handleDemoLogin = () => {
-        const demoEmail = "admin@gmail.com";
-        const demoPassword = "Admin@1";
-
-        signIn(demoEmail, demoPassword)
-            .then(() => {
-                toast.success('Demo User Logged in');
-                navigate(location.state ? location.state : '/');
-            })
-            .catch(error => {
-                toast.error(error.message);
-            });
+        setDemoEmail("admin@gmail.com");
+        setDemoPassword("Admin@1");
+        setFormError("");
+        toast.info("Demo credentials auto-filled. Click Login to continue.");
     };
 
     const handleGoogleSignIn = () => {
@@ -81,21 +76,27 @@ const Login = () => {
                         {/* email */}
                         <div>
                             <label className="label">Email</label>
-                            <input type="email"
+                            <input
+                                type="email"
                                 name='email'
                                 className="input"
                                 placeholder="Email"
                                 ref={emailRef}
+                                value={demoEmail}
+                                onChange={(e) => setDemoEmail(e.target.value)}
                                 required
                             />
                         </div>
                         {/* password */}
                         <div className='relative'>
                             <label className="label">Password</label>
-                            <input type={show ? "text" : "password"}
+                            <input
+                                type={show ? "text" : "password"}
                                 name='password'
                                 className="input"
                                 placeholder="Password"
+                                value={demoPassword}
+                                onChange={(e) => setDemoPassword(e.target.value)}
                                 required
                             />
                             <span onClick={() => setShow(!show)} className="absolute right-7 top-8 cursor-pointer z-50">

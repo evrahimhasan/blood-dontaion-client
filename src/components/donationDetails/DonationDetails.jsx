@@ -51,12 +51,12 @@ const DonationDetails = () => {
 
     return (
         <div>
-            <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-                <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-8">
+            <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="w-full max-w-4xl rounded-2xl shadow-lg p-8">
                     {/* Header */}
                     <div className="flex flex-col items-center mb-8">
-                        <TbHeartHandshake className="w-10 h-10 text-pink-500 mb-2" />
-                        <h1 className="text-2xl font-semibold text-pink-500">
+                        <TbHeartHandshake className="w-10 h-10 text-red-500 mb-2" />
+                        <h1 className="text-3xl font-semibold text-red-500">
                             Donation Requests Details
                         </h1>
                     </div>
@@ -90,7 +90,7 @@ const DonationDetails = () => {
 
                     {/* Button */}
                     <div className="flex justify-center mt-10">
-                        <button onClick={() => hendleDonate(details?._id, "inprogress")} className="px-8 py-2 rounded-xl bg-pink-500 text-white hover:bg-pink-600 transition">
+                        <button onClick={() => hendleDonate(details?._id, "inprogress")} className="px-8 py-2 rounded-xl bg-red-500 text-white hover:bg-pink-600 transition">
                             Donate
                         </button>
                     </div>
