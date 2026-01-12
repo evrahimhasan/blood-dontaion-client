@@ -45,8 +45,8 @@ const Login = () => {
     }
 
     const handleDemoLogin = () => {
-        setDemoEmail("admin@gmail.com");
-        setDemoPassword("Admin@1");
+        setDemoEmail("bablu@gmail.com");
+        setDemoPassword("Bablu@1");
         setFormError("");
         toast.info("Demo credentials auto-filled. Click Login to continue.");
     };
