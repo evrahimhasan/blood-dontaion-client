@@ -51,12 +51,12 @@ const AdminDashBoard = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 {/* TOTAL USERS */}
-                <div className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 group">
+                <div className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-indigo-500" />
                     <div className="p-6 flex items-center justify-between">
                         <div>
-                            <p className="text-xs tracking-widest text-gray-500 font-semibold">TOTAL USERS</p>
-                            <h2 className="text-3xl font-bold text-gray-800 mt-2">{user || 0}</h2>
+                            <p className="text-xs tracking-widest font-semibold">TOTAL USERS</p>
+                            <h2 className="text-3xl font-bold mt-2">{user || 0}</h2>
                         </div>
                         <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-purple-100 text-purple-600 group-hover:scale-110 transition">
                             <FaUsers className="text-3xl" />
@@ -65,12 +65,12 @@ const AdminDashBoard = () => {
                 </div>
 
                 {/* TOTAL FUNDING */}
-                <div className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 group">
+                <div className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-emerald-500" />
                     <div className="p-6 flex items-center justify-between">
                         <div>
-                            <p className="text-xs tracking-widest text-gray-500 font-semibold">TOTAL FUNDING</p>
-                            <h2 className="text-3xl font-bold text-gray-800 mt-2 flex items-center gap-2">
+                            <p className="text-xs tracking-widest font-semibold">TOTAL FUNDING</p>
+                            <h2 className="text-3xl font-bold mt-2 flex items-center gap-2">
                                 ৳ {(Number(totalFunding) || 0).toLocaleString()}
                             </h2>
                         </div>
@@ -81,12 +81,12 @@ const AdminDashBoard = () => {
                 </div>
 
                 {/* TOTAL REQUEST */}
-                <div className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 group">
+                <div className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-pink-500" />
                     <div className="p-6 flex items-center justify-between">
                         <div>
-                            <p className="text-xs tracking-widest text-gray-500 font-semibold">TOTAL REQUEST</p>
-                            <h2 className="text-3xl font-bold text-gray-800 mt-2">{totalRequest || 0}</h2>
+                            <p className="text-xs tracking-widest font-semibold">TOTAL REQUEST</p>
+                            <h2 className="text-3xl font-bold mt-2">{totalRequest || 0}</h2>
                         </div>
                         <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-red-100 text-red-600 group-hover:scale-110 transition">
                             <FaHeartbeat className="text-3xl" />
@@ -97,8 +97,8 @@ const AdminDashBoard = () => {
             </div>
 
             {/* Chart */}
-            <div className="mt-10 bg-white rounded-2xl shadow-md p-6">
-                <h3 className="text-lg font-semibold text-gray-700 mb-4 text-center">
+            <div className="mt-10 rounded-2xl shadow-md p-6">
+                <h3 className="text-lg font-semibold mb-4 text-center">
                     (Overview)
                 </h3>
 
@@ -131,7 +131,7 @@ const AdminDashBoard = () => {
                     </ResponsiveContainer>
                 </div>
 
-                <p className="text-xs text-gray-500 text-center mt-2">
+                <p className="text-xs text-center mt-2">
                     (Funding shown in thousands of taka)
                 </p>
             </div>
