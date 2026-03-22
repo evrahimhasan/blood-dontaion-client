@@ -123,7 +123,7 @@ const AllRequset = () => {
         return <LoadingSpinner></LoadingSpinner>
     }
     return (
-        <div className="w-full max-w-7xl mx-auto p-3 sm:px-6 py-6 overflow-x-hidden min-h-screen">
+        <div className="w-full max-w-7xl mx-auto p-3 sm:px-6 py-6 pt-16 md:pt-6 overflow-x-hidden min-h-screen">
 
             <h2 className="text-3xl font-semibold text-red-600 mb-4">All Donation Requests</h2>
 
@@ -211,49 +211,51 @@ const AllRequset = () => {
 
             {/* MOBILE CARD VIEW */}
             <div className="md:hidden space-y-4">
-                {allrequest.map(request => (
-                    <div key={request._id} className="shadow rounded-lg p-4 border w-full overflow-hidden">
-                        <div className="flex justify-between items-center mb-2">
-                            <div>
-                                <div className="font-semibold">{request.recipientName}</div>
-                                <div className="text-sm">{request.hospital}</div>
+                {allrequest.length === 0 ? (
+                    <p className="text-center text-red-500 font-bold text-lg mt-6">No requests found</p>
+                ) : (
+                    allrequest.map(request => (
+                        <div key={request._id} className="shadow rounded-lg p-4 border w-full overflow-hidden bg-white">
+                            <div className="flex justify-between items-center mb-2">
+                                <div>
+                                    <div className="font-semibold text-gray-800">{request.recipientName}</div>
+                                    <div className="text-xs text-gray-500">{request.hospital}</div>
+                                </div>
+                                <span className={`px-2 py-1 rounded-full text-xs font-semibold text-white
+                            ${request.donationStatus === "pending" ? "bg-yellow-500" :
+                                        request.donationStatus === "inprogress" ? "bg-blue-500" :
+                                            request.donationStatus === "done" ? "bg-green-500" : "bg-red-500"
+                                    }`}>
+                                    {request.donationStatus}
+                                </span>
                             </div>
-                            <span className={`px-2 py-1 rounded-full text-xs font-semibold
-                ${request.donationStatus === "pending" ? "bg-yellow-500" :
-                                    request.donationStatus === "inprogress" ? "bg-blue-500" :
-                                        request.donationStatus === "done" ? "bg-green-500" : "bg-red-500"
-                                }`}>
-                                {request.donationStatus}
-                            </span>
+                            <div className="flex flex-col gap-1">
+                                <div className="flex justify-between text-xs border-b border-gray-50 pb-1">
+                                    <span>Date: {request.donationDate}</span>
+                                    <span>Time: {request.donationTime}</span>
+                                </div>
+                                <div className="flex justify-between text-xs pt-1">
+                                    <span>Blood: <span className="font-bold text-red-600">{request.bloodGroup}</span></span>
+                                    <span className="truncate max-w-[150px]">Donor: {request.donationStatus === "inprogress" ? request.requesterEmail : "-"}</span>
+                                </div>
+                                <div className="flex flex-wrap gap-2 mt-3">
+                                    {request.donationStatus === "inprogress" && (
+                                        <>
+                                            <button onClick={() => hendleDone(request._id, "done")} className="btn btn-xs flex-1 btn-success text-white">Done</button>
+                                            <button onClick={() => hendleCencel(request._id, "canceled")} className="btn btn-xs flex-1 btn-error text-white">Cancel</button>
+                                        </>
+                                    )}
+                                    <Link to={`/dashboard/view-request/${request._id}`} className="flex-1">
+                                        <button className="btn btn-xs btn-neutral w-full">View</button>
+                                    </Link>
+                                    {request.donationStatus === "pending" && (
+                                        <button onClick={() => handleDelete(request._id)} className="btn btn-xs flex-1 btn-error text-white">Delete</button>
+                                    )}
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex flex-col gap-1">
-                            <div className="flex justify-between text-sm">
-                                <span>Date: {request.donationDate}</span>
-                                <span>Time: {request.donationTime}</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                                <span>Blood: {request.bloodGroup}</span>
-                                <span>Donor: {request.donationStatus === "inprogress" ? request.requesterEmail : "-"}</span>
-                            </div>
-                            <div className="flex flex-wrap gap-2 mt-2">
-                                {request.donationStatus === "inprogress" && (
-                                    <>
-                                        <button onClick={() => hendleDone(request._id, "done")} className="btn btn-xs flex-1">Done</button>
-                                        <button onClick={() => hendleCencel(request._id, "canceled")} className="btn btn-xs flex-1 btn-error">Cancel</button>
-                                    </>
-                                )}
-                                <Link to={`/dashboard/view-request/${request._id}`} className="flex-1">
-                                    <button className="btn btn-xs bg-black w-full">View</button>
-                                </Link>
-                                {request.donationStatus === "pending" && (
-                                    <button onClick={() => handleDelete(request._id)} className="btn btn-xs flex-1 btn-error">Delete</button>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
-                {allrequest.length === 0 && <p className="text-center text-red-500 font-bold text-lg mt-6">No requests found</p>}
+                    ))
+                )}
             </div>
 
             {/* Pagination */}
