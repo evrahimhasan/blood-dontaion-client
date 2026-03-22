@@ -6,13 +6,16 @@ import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner';
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
     const [users, setUsers] = useState([]);
+    const [totalUsers, setTotalUsers] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemPerPage = 10;
 
     const fetchUser = () => {
-        setLoading(true);
-        axiosSecure.get('/users')
+        axiosSecure.get(`/users?page=${currentPage - 1}&size=${itemPerPage}`)
             .then(res => {
                 setUsers(res.data.user);
+                setTotalUsers(res.data.totaluser);
                 setLoading(false);
             })
             .catch(error => {
@@ -22,8 +25,27 @@ const AllUsers = () => {
     };
 
     useEffect(() => {
-        fetchUser();
-    }, [axiosSecure]);
+
+        fetchUser()
+    }, [axiosSecure, currentPage, itemPerPage]);
+
+
+    const numberofPages = Math.ceil(totalUsers / itemPerPage);
+
+    const pages = [...Array(numberofPages).keys()].map((e) => e + 1);
+
+    const handlePrev = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+    const handleNext = () => {
+        if (currentPage < pages.length) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+
 
     const handleStatusChange = (email, status) => {
         axiosSecure.patch(`/update/user/status?email=${email}&status=${status}`)
@@ -173,6 +195,23 @@ const AllUsers = () => {
                     ))
                 )}
             </div>
+
+            {/* Pagination Controls */}
+            {numberofPages > 1 && (
+                <div className="flex flex-wrap justify-center gap-2 mt-6">
+                    <button onClick={handlePrev} disabled={currentPage === 1} className="btn btn-sm">Prev</button>
+                    {pages.map(page => (
+                        <button
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            className={`btn btn-sm ${page === currentPage ? "bg-[#435585] text-white" : ""}`}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                    <button onClick={handleNext} disabled={currentPage === numberofPages} className="btn btn-sm">Next</button>
+                </div>
+            )}
         </div>
     );
 };
